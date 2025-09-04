@@ -1,3 +1,4 @@
+import CardActivitie from "./components/CardActivitie";
 import Header from "./components/Header";
 import LogoLoop from "./components/LogoLoop";
 import Time from "./components/Time";
@@ -14,7 +15,7 @@ function App() {
   return (
     <>
       <div className="flex flex-col ">
-        <Time />
+        <CardActivitie />
       </div>
     </>
   );
