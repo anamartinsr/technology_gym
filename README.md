@@ -1,8 +1,19 @@
-# React + Vite
+# Technology Gym
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Template de site para academias, construído com React, TypeScript e Tailwind CSS.
 
-Currently, two official plugins are available:
+Este projeto é um template moderno para academias, com foco em performance, escalabilidade e facilidade de customização. Originalmente desenvolvido com Styled Components, está sendo refatorado para **Tailwind CSS**, mantendo TypeScript para maior segurança e manutenibilidade.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) 
+## Tecnologias Utilizadas
+
+- **React** – Biblioteca JavaScript para construção de interfaces.
+- **TypeScript** – Tipagem estática para maior segurança do código.
+- **Tailwind CSS** – Framework utilitário para estilização rápida e responsiva.
+- **Vite** – Bundler moderno para desenvolvimento rápido.
+
+## Funcionalidades
+
+- Layout responsivo para desktop e mobile.
+- Seções típicas de sites de academias: home, sobre, serviços, depoimentos e contato.
+- Componentes reutilizáveis em TypeScript + Tailwind.
+- Fácil de customizar e expandir conforme necessidades do projeto.
