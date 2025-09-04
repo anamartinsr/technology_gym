@@ -1,5 +1,7 @@
 import Header from "./components/Header";
 import LogoLoop from "./components/LogoLoop";
+import Time from "./components/Time";
+
 import IconScroll from "/iconScroll.png";
 import TecnlogyScroll from "/tecnologyScroll.png";
 
@@ -11,21 +13,8 @@ function App() {
 
   return (
     <>
-      <div className="bg-black flex flex-col ">
-        <Header />
-
-        <LogoLoop
-          logos={imageLogos}
-          speed={120}
-          direction="left"
-          logoHeight={48}
-          gap={40}
-          pauseOnHover
-          scaleOnHover
-          fadeOut
-          fadeOutColor="#000000"
-          ariaLabel="Technology partners"
-        />
+      <div className="flex flex-col ">
+        <Time />
       </div>
     </>
   );
