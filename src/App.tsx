@@ -3,6 +3,7 @@ import CardActivitie from "./components/CardActivitie";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import LogoLoop from "./components/LogoLoop";
+import Plan from "./components/Plan";
 import Time from "./components/Time";
 
 import IconScroll from "/iconScroll.png";
@@ -16,7 +17,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-black">
+      <div className="bg-white">
         <Header />
         <Home />
         <LogoLoop
@@ -34,6 +35,7 @@ function App() {
 
         <Time />
         <Activitie />
+        <Plan />
       </div>
     </>
   );
