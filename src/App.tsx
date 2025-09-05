@@ -1,3 +1,4 @@
+import Activitie from "./components/Activitie";
 import CardActivitie from "./components/CardActivitie";
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -32,7 +33,7 @@ function App() {
         />
 
         <Time />
-        <CardActivitie />
+        <Activitie />
       </div>
     </>
   );

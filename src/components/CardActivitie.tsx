@@ -1,19 +1,14 @@
-import React from "react";
-import Yoga from "/yoga.jpg";
-import Crossfit from "/crossfit.jpg";
-import Zumba from "/zumba.jpg";
-import ItemActivite from "./ItemActivite";
+interface CardActiviteProps {
+  src: string;
+  alt: string;
+  title: string;
+}
 
-const CardActivitie: React.FC = () => {
+export default function CardActivite({ src, alt, title }: CardActiviteProps) {
   return (
-    <div className="bg-white">
-      <div className="flex flex-col sm:flex-row items-center justify-center text-center gap-8 p-4">
-        <ItemActivite src={Yoga} alt="Yoga" title="Yoga" />
-        <ItemActivite src={Zumba} alt="Zumba" title="Zumba" />
-        <ItemActivite src={Crossfit} alt="Crossfit" title="Crossfit" />
-      </div>
+    <div className="bg-gradient-to-t from-[#e8fcc4] to-[#9cff1e] p-8 rounded-xl m-4 flex flex-col items-center">
+      <h3 className="text-white text-2xl font-bold mb-4">{title}</h3>
+      <img src={src} alt={alt} className="max-w-[300px] rounded-xl" />
     </div>
   );
-};
-
-export default CardActivitie;
+}
