@@ -26,13 +26,13 @@ export default function Header() {
     <header
       className={`fixed w-full  top-0 left-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "backdrop-blur-md bg-lime-400/30 border-b border-white/10 shadow-sm"
+          ? "backdrop-blur-md bg-black border-b border-white/10 shadow-sm"
           : "bg-black"
       }`}
     >
       <nav className="max-w-6xl mx-auto flex justify-between items-center p-4">
         <h1 className="text-2xl font-extrabold text-white tracking-wide">
-          <img src={Logo} alt="Logo" />
+          <img src={Logo} alt="Logo" className="w-22" />
         </h1>
 
         <ul className="hidden md:flex space-x-6">
@@ -63,7 +63,7 @@ export default function Header() {
               key={href}
               href={href}
               onClick={() => setOpen(false)}
-              className="block text-white hover:text-lime-400 transition-colors"
+              className="block text-white hover:text-black transition-colors"
             >
               {label}
             </a>
