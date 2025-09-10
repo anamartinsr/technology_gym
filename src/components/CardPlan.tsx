@@ -3,7 +3,7 @@ import ItemPlan from "./ItemPlan";
 
 export function CardPlanFitness() {
   return (
-    <div className="bg-[#949494] p-8 rounded-xl m-4 flex flex-col items-center">
+    <div className="bg-[#000000] p-8 rounded-xl m-4 flex flex-col items-center">
       <h3 className="text-white text-2xl font-bold mb-4">
         Plano Fitness - R$ 99/mês
       </h3>
@@ -48,7 +48,7 @@ export function CardPlanFitness() {
 
 export function CardPlanPower() {
   return (
-    <div className="bg-[#949494] p-8 rounded-xl m-4 flex flex-col items-center">
+    <div className="bg-[#000000] p-8 rounded-xl m-4 flex flex-col items-center">
       <h3 className="text-white text-2xl font-bold mb-4">
         Plano Power - R$ 199/mês
       </h3>
@@ -93,7 +93,7 @@ export function CardPlanPower() {
 
 export function CardPlanVip() {
   return (
-    <div className="bg-[#949494] p-8 rounded-xl m-4 flex flex-col items-center">
+    <div className="bg-[#000000] p-8 rounded-xl m-4 flex flex-col items-center">
       <h3 className="text-white text-2xl font-bold mb-4">
         Plano Vip - R$ 249/mês
       </h3>
