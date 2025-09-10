@@ -1,5 +1,4 @@
 import Activitie from "./components/Activitie";
-import CardActivitie from "./components/CardActivitie";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import LogoLoop from "./components/LogoLoop";
@@ -20,18 +19,21 @@ function App() {
       <div className="bg-white">
         <Header />
         <Home />
-        <LogoLoop
-          logos={imageLogos}
-          speed={120}
-          direction="left"
-          logoHeight={48}
-          gap={40}
-          pauseOnHover
-          scaleOnHover
-          fadeOut
-          fadeOutColor="#000000"
-          ariaLabel="Technology partners"
-        />
+
+        <div className="bg-black">
+          <LogoLoop
+            logos={imageLogos}
+            speed={120}
+            direction="left"
+            logoHeight={48}
+            gap={40}
+            pauseOnHover
+            scaleOnHover
+            fadeOut
+            fadeOutColor="#000000"
+            ariaLabel="Technology partners"
+          />
+        </div>
 
         <Time />
         <Activitie />

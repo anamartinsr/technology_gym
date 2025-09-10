@@ -6,7 +6,7 @@ import CardActivite from "./CardActivitie";
 
 const Activitie: React.FC = () => {
   return (
-    <div className="bg-white">
+    <div className="bg-[#9cff1e]">
       <div className="flex flex-col sm:flex-row items-center justify-center text-center gap-8 p-4">
         <CardActivite src={Yoga} alt="Yoga" title="Yoga" />
         <CardActivite src={Zumba} alt="Zumba" title="Zumba" />
