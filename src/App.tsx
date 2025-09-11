@@ -8,6 +8,7 @@ import IconScroll from "/iconScroll.png";
 import TecnlogyScroll from "/tecnologyScroll.png";
 import Activitie from "./components/Activitie";
 import HeroSection from "./components/HeroSection";
+import Units from "./components/Unit";
 
 function App() {
   const imageLogos = [
@@ -39,6 +40,8 @@ function App() {
         <HeroSection />
 
         <Activitie />
+
+        <Units />
 
         <Time />
 
