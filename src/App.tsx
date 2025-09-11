@@ -21,6 +21,7 @@ function App() {
     <>
       <div>
         <Header />
+
         <Home />
 
         <div className="bg-black">
@@ -44,9 +45,9 @@ function App() {
 
         <Units />
 
-        <Plan />
-
         <Time />
+
+        <Plan />
 
         <Footer />
       </div>
