@@ -9,6 +9,7 @@ import TecnlogyScroll from "/tecnologyScroll.png";
 import Activitie from "./components/Activitie";
 import HeroSection from "./components/HeroSection";
 import Units from "./components/Unit";
+import Footer from "./components/Footer";
 
 function App() {
   const imageLogos = [
@@ -46,6 +47,8 @@ function App() {
         <Plan />
 
         <Time />
+
+        <Footer />
       </div>
     </>
   );
