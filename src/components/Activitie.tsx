@@ -50,7 +50,7 @@ export default function Activitie() {
             ))}
           </div>
 
-          <Button text="Vem pra Technology Gym" variant="secondary" />
+          <Button text="MATRICULE-SE" variant="secondary" />
         </div>
 
         <div className="flex-1 flex justify-center md:justify-end">
