@@ -11,7 +11,7 @@ const styles = {
 export default function Title({ text, variant }: TitleProps) {
   return (
     <h2
-      className={`text-4xl text-center md:text-5xl text-[#9cff1e] font-bold mb-6 ${styles[variant]}`}
+      className={`text-4xl md:text-5xl text-[#9cff1e] font-bold ${styles[variant]}`}
     >
       {text}
     </h2>
