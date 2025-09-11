@@ -7,6 +7,7 @@ import Swimming from "/swimming.jpg";
 import Zumba from "/zumba.jpg";
 import Crossfit from "/crossfit.jpg";
 import Yoga from "/yoga.jpg";
+import ActivityItem from "./ActivityItem";
 
 export default function Activitie() {
   const images = [
@@ -17,10 +18,19 @@ export default function Activitie() {
     { src: Swimming, alt: "Swimming Technology" },
   ];
 
+  const activities = [
+    "Sauna",
+    "Musculação",
+    "CrossFit",
+    "Spinning",
+    "Pilates",
+    "Natação",
+  ];
+
   return (
     <section className="bg-[#9cff1e] min-h-screen p-8 flex items-center">
       <div className="container mx-auto flex flex-col md:flex-row items-center md:items-stretch gap-12">
-        <div className="flex-1 flex flex-col justify-center text-center md:text-left">
+        <div className="flex-1 flex flex-col justify-center gap-6 text-center md:text-left">
           <Title
             variant="secondary"
             text=" Atividades que transformam seu treino"
@@ -35,12 +45,9 @@ export default function Activitie() {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-left">
-            <p className="text-black text-lg md:text-xl">➤ Sauna</p>
-            <p className="text-black text-lg md:text-xl">➤ Musculação</p>
-            <p className="text-black text-lg md:text-xl">➤ CrossFit</p>
-            <p className="text-black text-lg md:text-xl">➤ Spinning</p>
-            <p className="text-black text-lg md:text-xl">➤ Pilates</p>
-            <p className="text-black text-lg md:text-xl">➤ Natação</p>
+            {activities.map((activity) => (
+              <ActivityItem key={activity} name={activity} />
+            ))}
           </div>
 
           <Button text="Vem pra Technology Gym" variant="secondary" />
