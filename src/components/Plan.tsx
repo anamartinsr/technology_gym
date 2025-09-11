@@ -83,7 +83,7 @@ export default function Plan() {
         textSpan=" saudável e ativa"
         after=" !"
       />
-      <section className="flex flex-col md:flex-row justify-center gap-6">
+      <section className="flex flex-col md:flex-row justify-center mt-4 gap-6">
         {plans.map((plan, index) => (
           <CardPlan key={index} {...plan} />
         ))}

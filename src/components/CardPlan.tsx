@@ -15,8 +15,8 @@ interface CardPlanProps {
 
 export default function CardPlan({ title, price, features }: CardPlanProps) {
   return (
-    <div className="bg-black p-8 rounded-xl m-4 flex flex-col gap-3 items-center transition-transform">
-      <h3 className="text-white text-2xl font-bold mb-4">
+    <div className="bg-black p-8 rounded-xl flex flex-col gap-3 items-center transition-transform">
+      <h3 className="text-white text-2xl font-bold mb-2">
         {title} - {price}
       </h3>
 
@@ -36,7 +36,9 @@ export default function CardPlan({ title, price, features }: CardPlanProps) {
         ))}
       </div>
 
-      <Button variant="primary" text="MATRICULE-SE" />
+      <div className="mt-auto">
+        <Button variant="primary" text="MATRICULE-SE" />
+      </div>
     </div>
   );
 }
