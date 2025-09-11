@@ -18,7 +18,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-gradient-to-t from-[#9cff1e] to-[#f7f6f6]">
+      <div>
         <Header />
         <Home />
 
@@ -43,9 +43,9 @@ function App() {
 
         <Units />
 
-        <Time />
-
         <Plan />
+
+        <Time />
       </div>
     </>
   );
