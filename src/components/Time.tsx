@@ -2,7 +2,7 @@ import ItemTime from "./ItemTime";
 
 export default function Time() {
   return (
-    <div className="bg-black w-full flex flex-col items-center p-6">
+    <div id="time" className="bg-black w-full flex flex-col items-center p-6">
       <p className="text-4xl md:text-5xl text-[#9cff1e] font-bold mb-6">
         Horários
       </p>

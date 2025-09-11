@@ -15,9 +15,21 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  function scrollToSection(e: React.MouseEvent, href: string) {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+    setOpen(false);
+  }
+
   const navLinks = [
-    { href: "#home", label: "Início" },
-    { href: "#about", label: "Sobre" },
+    { href: "#activitie", label: "Atividades" },
+    { href: "#unit", label: "Unidades" },
     { href: "#time", label: "Horários" },
     { href: "#plan", label: "Planos" },
   ];
@@ -44,6 +56,7 @@ export default function Header() {
                            after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-lime-400
                            after:left-0 after:-bottom-1 after:transition-all after:duration-300
                            hover:after:w-full"
+                onClick={(e) => scrollToSection(e, href)}
               >
                 {label}
               </a>
