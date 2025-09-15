@@ -9,7 +9,7 @@ export default function Enrollment() {
     <>
       <section className=" bg-(--secondary-color) p-8">
         <div className="flex flex-col">
-          <div className="relative w-full md:h-80 h-screen">
+          <div className="relative w-full md:h-50 h-screen">
             <img
               src={HomeImg}
               alt="home"
