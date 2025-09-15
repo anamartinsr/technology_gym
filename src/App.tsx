@@ -2,7 +2,7 @@ import Header from "./components/layout/Header/Header";
 import Home from "./components/Home/Home";
 import LogoLoop from "./components/ui/LogoLoop";
 import Plan from "./components/Plan/Plan";
-import Time from "./components/Time/Time";
+import Time from "./components/Schedule/Schedule";
 
 import IconScroll from "./assets/iconScroll.png";
 import TecnlogyScroll from "./assets/tecnologyScroll.png";
