@@ -1,8 +1,9 @@
+import type { JSX } from "react";
 import CardPlan from "./CardPlan";
 import Text from "./Text";
 import Title from "./Title";
 
-export default function Plan() {
+export default function Plan(): JSX.Element {
   const plans = [
     {
       title: "Plano Fitness",

@@ -1,9 +1,10 @@
+import type { JSX } from "react";
 import Button from "./Button";
 import Text from "./Text";
 import Title from "./Title";
 import HomeImg from "/home.png";
 
-export default function Home({}) {
+export default function Home(): JSX.Element {
   return (
     <div className="relative w-full md:h-auto h-screen">
       <img src={HomeImg} alt="home" className="w-full h-full object-cover" />

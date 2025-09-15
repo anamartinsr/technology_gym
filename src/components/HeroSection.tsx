@@ -1,9 +1,10 @@
+import type { JSX } from "react";
 import Button from "./Button";
 import Text from "./Text";
 import Title from "./Title";
 import Logo from "/logo.png";
 
-export default function HeroSection() {
+export default function HeroSection(): JSX.Element {
   return (
     <section className="bg-gradient-to-r from-[#000000] to-[#000000] text-white py-20 px-6 md:px-20 text-center">
       <img src={Logo} className="w-50" alt="Technology" />

@@ -55,10 +55,11 @@ const cx = (...parts: Array<string | false | null | undefined>) =>
 const useResizeObserver = (
   callback: () => void,
   elements: Array<React.RefObject<Element | null>>,
-  dependencies: React.DependencyList,
 ) => {
   useEffect(() => {
-    if (!window.ResizeObserver) {
+    if (typeof window === "undefined") return;
+
+    if (!("ResizeObserver" in window)) {
       const handleResize = () => callback();
       window.addEventListener("resize", handleResize);
       callback();
@@ -66,8 +67,11 @@ const useResizeObserver = (
     }
 
     const observers = elements.map((ref) => {
-      if (!ref.current) return null;
-      const observer = new ResizeObserver(callback);
+      if (!ref?.current) return null;
+      const observer = new ResizeObserver(() => {
+        callback();
+      });
+
       observer.observe(ref.current);
       return observer;
     });
@@ -77,16 +81,17 @@ const useResizeObserver = (
     return () => {
       observers.forEach((observer) => observer?.disconnect());
     };
-  }, dependencies);
+  }, [callback, elements]);
 };
 
 const useImageLoader = (
   seqRef: React.RefObject<HTMLUListElement | null>,
   onLoad: () => void,
-  dependencies: React.DependencyList,
 ) => {
   useEffect(() => {
-    const images = seqRef.current?.querySelectorAll("img") ?? [];
+    const images: NodeListOf<HTMLImageElement> =
+      seqRef.current?.querySelectorAll("img") ??
+      ([] as unknown as NodeListOf<HTMLImageElement>);
 
     if (images.length === 0) {
       onLoad();
@@ -94,20 +99,18 @@ const useImageLoader = (
     }
 
     let remainingImages = images.length;
+
     const handleImageLoad = () => {
       remainingImages -= 1;
-      if (remainingImages === 0) {
-        onLoad();
-      }
+      if (remainingImages === 0) onLoad();
     };
 
     images.forEach((img) => {
-      const htmlImg = img as HTMLImageElement;
-      if (htmlImg.complete) {
+      if (img.complete) {
         handleImageLoad();
       } else {
-        htmlImg.addEventListener("load", handleImageLoad, { once: true });
-        htmlImg.addEventListener("error", handleImageLoad, { once: true });
+        img.addEventListener("load", handleImageLoad, { once: true });
+        img.addEventListener("error", handleImageLoad, { once: true });
       }
     });
 
@@ -117,7 +120,7 @@ const useImageLoader = (
         img.removeEventListener("error", handleImageLoad);
       });
     };
-  }, dependencies);
+  }, [seqRef, onLoad]);
 };
 
 const useAnimationLoop = (
@@ -129,8 +132,8 @@ const useAnimationLoop = (
 ) => {
   const rafRef = useRef<number | null>(null);
   const lastTimestampRef = useRef<number | null>(null);
-  const offsetRef = useRef(0);
-  const velocityRef = useRef(0);
+  const offsetRef = useRef<number>(0);
+  const velocityRef = useRef<number>(0);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -184,13 +187,17 @@ const useAnimationLoop = (
     rafRef.current = requestAnimationFrame(animate);
 
     return () => {
-      if (rafRef.current !== null) {
-        cancelAnimationFrame(rafRef.current);
-        rafRef.current = null;
-      }
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
       lastTimestampRef.current = null;
     };
-  }, [targetVelocity, seqWidth, isHovered, pauseOnHover]);
+  }, [trackRef, targetVelocity, seqWidth, isHovered, pauseOnHover]);
+};
+
+// ✅ sem usar any
+const isNodeLogo = (
+  item: LogoItem,
+): item is Extract<LogoItem, { node: React.ReactNode }> => {
+  return "node" in item;
 };
 
 export const LogoLoop = React.memo<LogoLoopProps>(
@@ -209,9 +216,9 @@ export const LogoLoop = React.memo<LogoLoopProps>(
     className,
     style,
   }) => {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const trackRef = useRef<HTMLDivElement>(null);
-    const seqRef = useRef<HTMLUListElement>(null);
+    const containerRef = useRef<HTMLDivElement | null>(null);
+    const trackRef = useRef<HTMLDivElement | null>(null);
+    const seqRef = useRef<HTMLUListElement | null>(null);
 
     const [seqWidth, setSeqWidth] = useState<number>(0);
     const [copyCount, setCopyCount] = useState<number>(
@@ -240,13 +247,8 @@ export const LogoLoop = React.memo<LogoLoopProps>(
       }
     }, []);
 
-    useResizeObserver(
-      updateDimensions,
-      [containerRef, seqRef],
-      [logos, gap, logoHeight],
-    );
-
-    useImageLoader(seqRef, updateDimensions, [logos, gap, logoHeight]);
+    useResizeObserver(updateDimensions, [containerRef, seqRef]);
+    useImageLoader(seqRef, updateDimensions);
 
     useAnimationLoop(
       trackRef,
@@ -290,9 +292,9 @@ export const LogoLoop = React.memo<LogoLoopProps>(
 
     const renderLogoItem = useCallback(
       (item: LogoItem, key: React.Key) => {
-        const isNodeItem = "node" in item;
+        const nodeItem = isNodeLogo(item) ? item : null;
 
-        const content = isNodeItem ? (
+        const content = nodeItem ? (
           <span
             className={cx(
               "inline-flex items-center",
@@ -300,38 +302,49 @@ export const LogoLoop = React.memo<LogoLoopProps>(
               scaleOnHover &&
                 "transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-120",
             )}
-            aria-hidden={!!(item as any).href && !(item as any).ariaLabel}
+            aria-hidden={!!nodeItem.href && !nodeItem.ariaLabel}
           >
-            {(item as any).node}
+            {nodeItem.node}
           </span>
         ) : (
-          <img
-            className={cx(
-              "h-[var(--logoloop-logoHeight)] w-auto block object-contain",
-              "[-webkit-user-drag:none] pointer-events-none",
-              "[image-rendering:-webkit-optimize-contrast]",
-              "motion-reduce:transition-none",
-              scaleOnHover &&
-                "transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-120",
-            )}
-            src={(item as any).src}
-            srcSet={(item as any).srcSet}
-            sizes={(item as any).sizes}
-            width={(item as any).width}
-            height={(item as any).height}
-            alt={(item as any).alt ?? ""}
-            title={(item as any).title}
-            loading="lazy"
-            decoding="async"
-            draggable={false}
-          />
+          (() => {
+            const imgItem = item as Extract<LogoItem, { src: string }>;
+            return (
+              <img
+                className={cx(
+                  "h-[var(--logoloop-logoHeight)] w-auto block object-contain",
+                  "[-webkit-user-drag:none] pointer-events-none",
+                  "[image-rendering:-webkit-optimize-contrast]",
+                  "motion-reduce:transition-none",
+                  scaleOnHover &&
+                    "transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-120",
+                )}
+                src={imgItem.src}
+                srcSet={imgItem.srcSet}
+                sizes={imgItem.sizes}
+                width={imgItem.width}
+                height={imgItem.height}
+                alt={imgItem.alt ?? ""}
+                title={imgItem.title}
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+              />
+            );
+          })()
         );
 
-        const itemAriaLabel = isNodeItem
-          ? ((item as any).ariaLabel ?? (item as any).title)
-          : ((item as any).alt ?? (item as any).title);
+        const itemAriaLabel = nodeItem
+          ? (nodeItem.ariaLabel ?? nodeItem.title)
+          : ((item as Extract<LogoItem, { src: string }>).alt ??
+            (item as Extract<LogoItem, { src: string }>).title);
 
-        const inner = (item as any).href ? (
+        const href =
+          (nodeItem
+            ? nodeItem.href
+            : (item as Extract<LogoItem, { src: string }>).href) ?? undefined;
+
+        const inner = href ? (
           <a
             className={cx(
               "inline-flex items-center no-underline rounded",
@@ -339,7 +352,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
               "hover:opacity-80",
               "focus-visible:outline focus-visible:outline-current focus-visible:outline-offset-2",
             )}
-            href={(item as any).href}
+            href={href}
             aria-label={itemAriaLabel || "logo link"}
             target="_blank"
             rel="noreferrer noopener"

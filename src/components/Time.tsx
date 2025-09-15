@@ -1,8 +1,9 @@
+import type { JSX } from "react";
 import Button from "./Button";
 import ItemTime from "./ItemTime";
 import Text from "./Text";
 
-export default function Time() {
+export default function Time(): JSX.Element {
   return (
     <div id="time" className="bg-black w-full flex flex-col items-center p-6">
       <p className="text-4xl md:text-5xl text-[#9cff1e] font-bold mb-6">

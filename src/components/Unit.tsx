@@ -1,9 +1,10 @@
+import type { JSX } from "react";
 import Title from "./Title";
 import UnitCard from "./UnitCard";
 import Gymfacade from "/gymfacade.jpg";
 import Logo from "/logo.png";
 
-export default function Units() {
+export default function Units(): JSX.Element {
   const buttonText = "Vem pra Technology Gym";
 
   return (
