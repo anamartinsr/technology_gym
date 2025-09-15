@@ -60,18 +60,12 @@ const useResizeObserver = (
     if (typeof window === "undefined") return;
 
     if (!("ResizeObserver" in window)) {
-      const handleResize = () => callback();
-      window.addEventListener("resize", handleResize);
-      callback();
-      return () => window.removeEventListener("resize", handleResize);
+      return;
     }
 
     const observers = elements.map((ref) => {
       if (!ref?.current) return null;
-      const observer = new ResizeObserver(() => {
-        callback();
-      });
-
+      const observer = new ResizeObserver(() => callback());
       observer.observe(ref.current);
       return observer;
     });
