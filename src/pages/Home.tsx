@@ -4,7 +4,6 @@ import Schedule from "../components/Sections/Schedule/index";
 import TextBlock from "../components/Sections/TextBlock/index";
 import LogoLoop from "../components/ui/LogoLoop";
 import Units from "../components/Sections/Unit/index";
-import Layout from "../components/layout/Layout";
 import IntroSection from "../components/Sections/IntroSection/index";
 
 import IconScroll from "../assets/iconScroll.png";
