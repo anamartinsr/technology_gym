@@ -1,0 +1,49 @@
+import Activitie from "../components/Sections/Activitie/index";
+import Plan from "../components/Sections/Plan/index";
+import Schedule from "../components/Sections/Schedule/index";
+import TextBlock from "../components/Sections/TextBlock/index";
+import LogoLoop from "../components/ui/LogoLoop";
+import Units from "../components/Sections/Unit/index";
+import Layout from "../components/layout/Layout";
+import IntroSection from "../components/Sections/IntroSection/index";
+
+import IconScroll from "../assets/iconScroll.png";
+import TecnlogyScroll from "../assets/tecnologyScroll.png";
+
+export default function Home() {
+  const imageLogos = [
+    { src: IconScroll, alt: "IconScroll" },
+    { src: TecnlogyScroll, alt: "TecnlogyScroll" },
+  ];
+
+  return (
+    <>
+      <IntroSection />
+
+      <div className="bg-black">
+        <LogoLoop
+          logos={imageLogos}
+          speed={50}
+          direction="left"
+          logoHeight={48}
+          gap={40}
+          pauseOnHover
+          scaleOnHover
+          fadeOut
+          fadeOutColor="#000000"
+          ariaLabel="Technology partners"
+        />
+      </div>
+
+      <TextBlock />
+
+      <Activitie />
+
+      <Units />
+
+      <Schedule />
+
+      <Plan />
+    </>
+  );
+}
