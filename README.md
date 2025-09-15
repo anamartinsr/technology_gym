@@ -14,6 +14,6 @@ Este projeto é um template moderno para academias, com foco em performance, esc
 ## Funcionalidades
 
 - Layout responsivo para desktop e mobile.
-- Seções típicas de sites de academias: home, sobre, serviços, depoimentos e contato.
+- Seções típicas de sites de academias: home, atividades, unidades, horários e planos.
 - Componentes reutilizáveis em TypeScript + Tailwind.
 - Fácil de customizar e expandir conforme necessidades do projeto.
