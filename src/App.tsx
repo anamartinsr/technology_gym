@@ -1,15 +1,15 @@
-import Header from "./components/Header";
-import Home from "./components/Home";
-import LogoLoop from "./components/LogoLoop";
-import Plan from "./components/Plan";
-import Time from "./components/Time";
+import Header from "./components/layout/Header";
+import Home from "./components/Home/Home";
+import LogoLoop from "./components/ui/LogoLoop";
+import Plan from "./components/Plan/Plan";
+import Time from "./components/Time/Time";
 
 import IconScroll from "/iconScroll.png";
 import TecnlogyScroll from "/tecnologyScroll.png";
-import Activitie from "./components/Activitie";
-import HeroSection from "./components/HeroSection";
-import Units from "./components/Unit";
-import Footer from "./components/Footer";
+import Activitie from "./components/Activitie/Activitie";
+import HeroSection from "./components/TextBlock/TextBlock";
+import Units from "./components/Unit/Unit";
+import Footer from "./components/layout/Footer";
 
 function App() {
   const imageLogos = [
