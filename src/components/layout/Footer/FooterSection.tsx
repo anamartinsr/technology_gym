@@ -6,7 +6,7 @@ interface FooterSectionProps {
 export default function FooterSection({ title, children }: FooterSectionProps) {
   return (
     <div>
-      <h4 className="text-lime-400 font-bold text-lg mb-4">{title}</h4>
+      <h4 className="text-(--primary-color) font-bold text-lg mb-4">{title}</h4>
       {children}
     </div>
   );

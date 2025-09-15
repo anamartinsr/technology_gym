@@ -31,7 +31,7 @@ export default function Header() {
 
   return (
     <header
-      className={`w-full top-0 left-0 z-50 transition-all duration-300 ${scrolled ? "backdrop-blur-md bg-black border-b border-white/10 shadow-sm" : "bg-black"}`}
+      className={`w-full top-0 left-0 z-50 transition-all duration-300 ${scrolled ? "backdrop-blur-md bg-(--secondary-color) border-b border-white/10 shadow-sm" : "bg-(--secondary-color)"}`}
     >
       <nav className="max-w-6xl mx-auto flex justify-between items-center p-4">
         <h1 className="text-2xl font-extrabold text-white tracking-wide">

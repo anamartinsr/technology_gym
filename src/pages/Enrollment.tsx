@@ -7,7 +7,7 @@ import HomeImg from "../assets/home.png";
 export default function Enrollment() {
   return (
     <>
-      <section className=" bg-black p-8">
+      <section className=" bg-(--secondary-color) p-8">
         <div className="flex flex-col">
           <div className="relative w-full md:h-80 h-screen">
             <img

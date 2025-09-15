@@ -4,14 +4,14 @@ interface TitleProps {
 }
 
 const styles = {
-  primary: "text-[#9cff1e]",
-  secondary: "text-black ",
+  primary: "text-(--primary-color)",
+  secondary: "text-(--secondary-color) ",
 };
 
 export default function Title({ text, variant }: TitleProps) {
   return (
     <h2
-      className={`text-4xl md:text-5xl text-[#9cff1e] font-bold ${styles[variant]}`}
+      className={`text-4xl md:text-5xl text-(--primary-color) font-bold ${styles[variant]}`}
     >
       {text}
     </h2>

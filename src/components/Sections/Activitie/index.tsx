@@ -30,7 +30,7 @@ export default function Activitie() {
   return (
     <section
       id="activitie"
-      className="bg-[#9cff1e] min-h-screen p-8 flex items-center"
+      className="bg-(--primary-color) min-h-screen p-8 flex items-center"
     >
       <div className="container mx-auto flex flex-col md:flex-row items-center md:items-stretch gap-12">
         <div className="flex-1 flex flex-col justify-center gap-6 text-center md:text-left">
@@ -40,7 +40,7 @@ export default function Activitie() {
           />
 
           <Text
-            pColor="text-black"
+            pColor="text-(--secondary-color)"
             spanColor="text-white"
             before="Na "
             textSpan="Technology Gym"

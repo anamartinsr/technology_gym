@@ -20,7 +20,9 @@ export default function EnrollmentForm() {
       onSubmit={handleSubmit}
       className="bg-white px-10 lg:px-45 py-10 grid gap-4"
     >
-      <h2 className="text-xl font-bold text-black">Preencha seus dados</h2>
+      <h2 className="text-xl font-bold text-(--secondary-color)">
+        Preencha seus dados
+      </h2>
 
       <InputField label="Nome Completo" id="fullName" required />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

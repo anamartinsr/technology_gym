@@ -19,7 +19,7 @@ export default function Home() {
     <>
       <IntroSection />
 
-      <div className="bg-black">
+      <div className="bg-(--secondary-color)">
         <LogoLoop
           logos={imageLogos}
           speed={50}

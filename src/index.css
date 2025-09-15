@@ -3,3 +3,8 @@
 body {
   font-family: Poppins;
 }
+
+@theme {
+  --primary-color: #9cff1e;
+  --secondary-color: #000000;
+}

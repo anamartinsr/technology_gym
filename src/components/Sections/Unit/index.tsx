@@ -8,7 +8,10 @@ export default function Units(): JSX.Element {
   const buttonText = "Vem pra Technology Gym";
 
   return (
-    <section id="unit" className="bg-black py-16 px-6 md:px-20 text-center">
+    <section
+      id="unit"
+      className="bg-(--secondary-color) py-16 px-6 md:px-20 text-center"
+    >
       <div className="flex justify-center items-center">
         <Title variant="primary" text="Nossas Unidades" />
         <img src={Logo} alt="Logo Tecnhology" />

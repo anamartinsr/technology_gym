@@ -15,7 +15,7 @@ interface CardProps {
 
 export default function Card({ title, price, features }: CardProps) {
   return (
-    <div className="bg-black p-8 rounded-xl flex flex-col gap-3 items-center transition-transform">
+    <div className="bg-(--secondary-color) p-8 rounded-xl flex flex-col gap-3 items-center transition-transform">
       <h3 className="text-white text-2xl font-bold mb-2">
         {title} - {price}
       </h3>
@@ -26,7 +26,7 @@ export default function Card({ title, price, features }: CardProps) {
             key={index}
             icon={
               feature.included ? (
-                <AiOutlineCheckCircle className="text-lime-400" />
+                <AiOutlineCheckCircle className="text-(--primary-color)" />
               ) : (
                 <AiOutlineCloseCircle className="text-red-500" />
               )

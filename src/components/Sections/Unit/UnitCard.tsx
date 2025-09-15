@@ -16,7 +16,7 @@ export default function UnitCard({
   buttonText,
 }: UnitCardProps) {
   return (
-    <div className="bg-[#9cff1e] text-black flex flex-col gap-4 p-6 rounded-2xl shadow-lg transition-transform hover:scale-105">
+    <div className="bg-(--primary-color) text-(--secondary-color) flex flex-col gap-4 p-6 rounded-2xl shadow-lg transition-transform hover:scale-105">
       <img
         src={image}
         alt={alt}

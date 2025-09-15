@@ -8,7 +8,7 @@ interface TimeSlotProps {
 export default function TimeSlot({ day, time }: TimeSlotProps) {
   return (
     <div className="flex flex-col justify-center items-center mt-4">
-      <p className="font-bold text-[#9cff1e]">{day}</p>
+      <p className="font-bold text-(--primary-color)">{day}</p>
 
       <div className="flex flex-row justify-center items-center gap-4 leading-relaxed">
         <span className="text-white font-bold">

@@ -4,9 +4,12 @@ interface ButtonProps {
 }
 
 const styles = {
-  primary: "bg-[#9cff1e] text-black hover:bg-gray-100 hover:text-black",
-  secondary: "bg-black text-[#9cff1e] hover:bg-gray-100 hover:text-black",
-  enrollment: "bg-[#9cff1e] text-black hover:bg-black hover:text-white",
+  primary:
+    "bg-(--primary-color) text-(--secondary-color) hover:bg-gray-100 hover:text-(--secondary-color)",
+  secondary:
+    "bg-(--secondary-color) text-(--primary-color) hover:bg-gray-100 hover:text-(--secondary-color)",
+  enrollment:
+    "bg-(--primary-color) text-(--secondary-color) hover:bg-(--secondary-color) hover:text-white",
 };
 
 export default function Button({ variant = "primary", text }: ButtonProps) {

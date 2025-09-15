@@ -74,11 +74,11 @@ export default function Plan(): JSX.Element {
   return (
     <div
       id="plan"
-      className="bg-[#9cff1e] min-h-screen p-8 flex flex-col items-center"
+      className="bg-(--primary-color) min-h-screen p-8 flex flex-col items-center"
     >
       <Title variant="secondary" text="Planos" />
       <Text
-        pColor="text-black"
+        pColor="text-(--secondary-color)"
         spanColor="text-white"
         before="Escolha o plano que se encaixa melhor para você e comece sua jornada rumo a uma vida mais"
         textSpan=" saudável e ativa"

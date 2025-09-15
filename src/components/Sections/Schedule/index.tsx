@@ -5,15 +5,18 @@ import Text from "../../common/Text";
 
 export default function Schedule(): JSX.Element {
   return (
-    <div id="time" className="bg-black w-full flex flex-col items-center p-6">
-      <p className="text-4xl md:text-5xl text-[#9cff1e] font-bold mb-6">
+    <div
+      id="time"
+      className="bg-(--secondary-color) w-full flex flex-col items-center p-6"
+    >
+      <p className="text-4xl md:text-5xl text-(--primary-color) font-bold mb-6">
         Horários
       </p>
 
       <div className="max-w-4xl w-full flex flex-col gap-7 items-center">
         <Text
           pColor="text-white"
-          spanColor="text-[#9cff1e]"
+          spanColor="text-(--primary-color)"
           before="Escolha o melhor "
           textSpan="horário"
           after=" para treinar e mantenha sua rotina sem complicações."
