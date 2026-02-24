@@ -22,7 +22,7 @@ export default function TextBlock(): JSX.Element {
           after=", oferecemos inovação, tecnologia e cuidado em cada detalhe para que você alcance seus objetivos com motivação e bem-estar."
         />
 
-        <Button text="Comece Agora" variant="primary" />
+        <Button text="Comece Agora" variant="primary" to="/enrollment" />
       </div>
     </section>
   );

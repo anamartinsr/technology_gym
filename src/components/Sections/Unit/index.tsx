@@ -1,12 +1,10 @@
 import type { JSX } from "react";
 import Title from "../../common/Title";
 import UnitCard from "./UnitCard";
-import Gymfacade from "../../../assets/gymfacade.jpg";
+import Gymfacade from "/gymfacade.jpg";
 import Logo from "../../../assets/logo.png";
 
 export default function Units(): JSX.Element {
-  const buttonText = "Vem pra Technology Gym";
-
   return (
     <section
       id="unit"
@@ -23,21 +21,18 @@ export default function Units(): JSX.Element {
           address="Rua Exemplo, 123 - Centro"
           image={Gymfacade}
           alt="Unidade Centro"
-          buttonText={buttonText}
         />
         <UnitCard
           name="Unidade Zona Sul"
           address="Av. Modelo, 456 - Zona Sul"
           image={Gymfacade}
           alt="Unidade Zona Sul"
-          buttonText={buttonText}
         />
         <UnitCard
           name="Unidade Zona Norte"
           address="Rua Inspiração, 789 - Zona Norte"
           image={Gymfacade}
           alt="Unidade Zona Norte"
-          buttonText={buttonText}
         />
       </div>
     </section>

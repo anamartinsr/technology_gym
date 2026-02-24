@@ -30,7 +30,11 @@ export default function Schedule(): JSX.Element {
           <TimeSlot day="Domingo e Feriados" time="05:00 / 14:00" />
         </div>
 
-        <Button text="VEM PRA TECHNOLOGY GYM" variant="primary" />
+        <Button
+          text="VEM PRA TECHNOLOGY GYM"
+          variant="primary"
+          to="/enrollment"
+        />
       </div>
     </div>
   );
