@@ -2,11 +2,11 @@ import Button from "../../ui/Button";
 import Carrosel from "../../ui/Carrosel";
 import Text from "../../common/Text";
 import Title from "../../common/Title";
-import Weigths from "../../../assets/weigths.jpg";
-import Swimming from "../../../assets/swimming.jpg";
-import Zumba from "../../../assets/zumba.jpg";
-import Crossfit from "../../../assets/crossfit.jpg";
-import Yoga from "../../../assets/yoga.jpg";
+import Weigths from "/weigths.jpg";
+import Swimming from "/swimming.jpg";
+import Zumba from "/zumba.jpg";
+import Crossfit from "/crossfit.jpg";
+import Yoga from "/yoga.jpg";
 import BulletItem from "./BulletItem";
 
 export default function Activitie() {
@@ -53,7 +53,7 @@ export default function Activitie() {
             ))}
           </div>
 
-          <Button text="MATRICULE-SE" variant="secondary" />
+          <Button text="MATRICULE-SE" variant="secondary" to="/enrollment" />
         </div>
 
         <div className="flex-1 flex justify-center md:justify-end">

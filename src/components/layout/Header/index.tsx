@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import NavLink from "./NavLink";
 import MobileMenu from "./MobileMenu";
 import LogoHeader from "./LogoHeader";
+import { scrollToSection } from "../../../utils/scrollToSection";
 
 const navLinks = [
   { href: "#activitie", label: "Atividades" },
@@ -22,13 +23,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  function scrollToSection(e: React.MouseEvent, href: string) {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) element.scrollIntoView({ behavior: "smooth", block: "start" });
-    setOpen(false);
-  }
-
   return (
     <header
       className={`w-full top-0 left-0 z-50 transition-all duration-300 ${scrolled ? "backdrop-blur-md bg-(--secondary-color) border-b border-white/10 shadow-sm" : "bg-(--secondary-color)"}`}
@@ -44,7 +38,7 @@ export default function Header() {
               <NavLink
                 href={href}
                 label={label}
-                onClick={(e) => scrollToSection(e, href)}
+                onClick={(e) => scrollToSection(e, href, setOpen)}
               />
             </li>
           ))}

@@ -2,7 +2,8 @@ import type { JSX } from "react";
 import Button from "../../ui/Button";
 import Text from "../../common/Text";
 import Title from "../../common/Title";
-import HomeImg from "../../../assets/home.png";
+import HomeImg from "/home.png";
+import { scrollToSection } from "../../../utils/scrollToSection";
 
 export default function IntroSection(): JSX.Element {
   return (
@@ -20,9 +21,17 @@ export default function IntroSection(): JSX.Element {
         />
 
         <div className="flex flex-col sm:flex-row gap-4 mt-6 w-full sm:w-auto">
-          <Button text="MATRICULE-SE" variant="primary" />
-          <Button text="UNIDADES" variant="primary" />
-          <Button text="PLANOS" variant="primary" />
+          <Button text="MATRICULE-SE" variant="primary" to="/enrollment" />
+          <Button
+            text="UNIDADES"
+            variant="primary"
+            onClick={(e) => scrollToSection(e, "#unit")}
+          />
+          <Button
+            text="PLANOS"
+            variant="primary"
+            onClick={(e) => scrollToSection(e, "#plan")}
+          />
         </div>
       </div>
     </div>

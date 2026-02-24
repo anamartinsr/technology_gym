@@ -37,7 +37,7 @@ export default function Card({ title, price, features }: CardProps) {
       </div>
 
       <div className="mt-auto">
-        <Button variant="primary" text="MATRICULE-SE" />
+        <Button variant="primary" text="MATRICULE-SE" to="/enrollment" />
       </div>
     </div>
   );
