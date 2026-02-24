@@ -6,8 +6,8 @@ import LogoLoop from "../components/ui/LogoLoop";
 import Units from "../components/Sections/Unit/index";
 import IntroSection from "../components/Sections/IntroSection/index";
 
-import IconScroll from "../assets/iconScroll.png";
-import TecnlogyScroll from "../assets/tecnologyScroll.png";
+import IconScroll from "/iconScroll.png";
+import TecnlogyScroll from "/tecnologyScroll.png";
 
 export default function Home() {
   const imageLogos = [

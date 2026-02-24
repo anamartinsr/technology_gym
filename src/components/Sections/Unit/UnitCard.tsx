@@ -5,16 +5,9 @@ interface UnitCardProps {
   address: string;
   image: string;
   alt: string;
-  buttonText: string;
 }
 
-export default function UnitCard({
-  name,
-  address,
-  image,
-  alt,
-  buttonText,
-}: UnitCardProps) {
+export default function UnitCard({ name, address, image, alt }: UnitCardProps) {
   return (
     <div className="bg-(--primary-color) text-(--secondary-color) flex flex-col gap-4 p-6 rounded-2xl shadow-lg transition-transform hover:scale-105">
       <img
@@ -24,7 +17,11 @@ export default function UnitCard({
       />
       <h3 className="text-xl font-bold">{name}</h3>
       <p className="text-sm mt-2">{address}</p>
-      <Button text={buttonText} variant="secondary" />
+      <Button
+        text="Vem pra Technology Gym"
+        variant="secondary"
+        to="/enrollment"
+      />
     </div>
   );
 }
