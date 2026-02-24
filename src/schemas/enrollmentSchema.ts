@@ -7,25 +7,20 @@ export const enrollmentSchema = z.object({
   fullName: z
     .string()
     .min(10, "Nome deve ter no mínimo 10 caracteres")
-    .max(255, "Nome muito longo")
+    .max(100, "Nome muito longo")
     .regex(onlyLettersRegex, "Nome não pode conter números")
     .regex(noEmojiRegex, "Caracteres inválidos"),
 
   cpf: z
     .string()
-    .length(14, "CPF inválido")
+    .min(14, "CPF inválido")
     .regex(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, "Formato de CPF inválido")
     .regex(noEmojiRegex, "Caracteres inválidos"),
 
   dob: z
     .string()
-    .refine((date) => {
-      if (!date) return false;
-      const inputDate = new Date(date);
-      const today = new Date();
-      return inputDate <= today;
-    }, "Data não pode ser futura")
-    .regex(noEmojiRegex, "Caracteres inválidos"),
+    .min(1, "Informe a data")
+    .refine((date) => new Date(date) <= new Date(), "Data não pode ser futura"),
 
   phone: z
     .string()
@@ -36,14 +31,18 @@ export const enrollmentSchema = z.object({
   email: z
     .string()
     .email("Email inválido")
-    .max(255)
+    .max(100)
     .regex(noEmojiRegex, "Caracteres inválidos"),
 
   plan: z.string().min(1, "Selecione um plano"),
 
-  terms: z.boolean().refine((v) => v === true, "Aceite os termos"),
+  terms: z.boolean().refine((v) => v === true, {
+    message: "Aceite os termos",
+  }),
 
-  privacy: z.boolean().refine((v) => v === true, "Aceite a política"),
+  privacy: z.boolean().refine((v) => v === true, {
+    message: "Aceite a política",
+  }),
 });
 
 export type EnrollmentFormData = z.infer<typeof enrollmentSchema>;

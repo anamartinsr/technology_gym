@@ -1,18 +1,25 @@
-interface CheckboxFieldProps {
+import type { FieldError } from "react-hook-form";
+
+interface CheckboxFieldProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  id: string;
-  required?: boolean;
+  error?: FieldError;
 }
 
 export default function CheckboxField({
   label,
   id,
-  required = false,
+  error,
+  ...props
 }: CheckboxFieldProps) {
   return (
-    <label className="flex items-center gap-2 cursor-pointer text-(--secondary-color)">
-      <input type="checkbox" id={id} required={required} className="w-4 h-4" />
-      {label}
-    </label>
+    <div className="flex flex-col">
+      <label className="flex items-center gap-2 cursor-pointer text-(--secondary-color)">
+        <input type="checkbox" id={id} {...props} />
+        {label}
+      </label>
+
+      {error && <span className="text-red-500 text-sm">{error.message}</span>}
+    </div>
   );
 }

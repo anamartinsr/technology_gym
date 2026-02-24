@@ -1,30 +1,30 @@
-interface InputFieldProps {
+import type { FieldError } from "react-hook-form";
+
+interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  type?: string;
-  id: string;
-  required?: boolean;
-  placeholder?: string;
+  error?: FieldError;
 }
 
 export default function InputField({
   label,
-  type = "text",
   id,
-  required = false,
-  placeholder = "",
+  error,
+  ...props
 }: InputFieldProps) {
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor={id} className="font-bold text-(--secondary-color)">
         {label}
       </label>
+
       <input
-        type={type}
         id={id}
-        placeholder={placeholder}
-        required={required}
-        className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-(--primary-color)"
+        {...props}
+        className={`border rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-(--primary-color)
+        ${error ? "border-red-500" : "border-gray-300"}`}
       />
+
+      {error && <span className="text-red-500 text-sm">{error.message}</span>}
     </div>
   );
 }

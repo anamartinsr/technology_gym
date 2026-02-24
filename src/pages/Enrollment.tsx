@@ -2,7 +2,7 @@ import Text from "../components/common/Text";
 import Title from "../components/common/Title";
 import EnrollmentForm from "../components/form/EnrollmentForm";
 
-import HomeImg from "../assets/home.png";
+import HomeImg from "/home.png";
 
 export default function Enrollment() {
   return (
