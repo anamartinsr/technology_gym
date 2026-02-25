@@ -1,26 +1,6 @@
-<!-- # Technology Gym
-
-> Template de site para academias, construído com React, TypeScript e Tailwind CSS.
-
-Este projeto é um template moderno para academias, com foco em performance, escalabilidade e facilidade de customização. Originalmente desenvolvido com Styled Components, está sendo refatorado para **Tailwind CSS**, mantendo TypeScript para maior segurança e manutenibilidade.
-
-## Tecnologias Utilizadas
-
-- **React** – Biblioteca JavaScript para construção de interfaces.
-- **TypeScript** – Tipagem estática para maior segurança do código.
-- **Tailwind CSS** – Framework utilitário para estilização rápida e responsiva.
-- **Vite** – Bundler moderno para desenvolvimento rápido.
-
-## Funcionalidades
-
-- Layout responsivo para desktop e mobile.
-- Seções típicas de sites de academias: home, atividades, unidades, horários e planos.
-- Componentes reutilizáveis em TypeScript + Tailwind.
-- Fácil de customizar e expandir conforme necessidades do projeto. -->
-
 # Technology Gym
 
-Template moderno de site para academias, desenvolvido com foco em experiência do usuário, performance e arquitetura escalável, utilizando **React**, **TypeScript**, **Tailwind CSS** e **Vite**.
+Site de academia com apresentação de planos, atividades e matrícula online, com estrutura moderna e foco em experiência do usuário, performance e arquitetura escalável, utilizando React, TypeScript, Tailwind CSS e Vite.
 
 O projeto inclui componentes reutilizáveis, formulário com validação robusta e estrutura preparada para expansão futura, seguindo boas práticas de desenvolvimento front-end.
 
