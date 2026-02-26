@@ -1,8 +1,8 @@
 import type { JSX } from "react";
 import Title from "../../common/Title";
 import UnitCard from "./UnitCard";
-import Gymfacade from "/gymfacade.jpg";
 import Logo from "../../../assets/logo.png";
+import unit from "../../../data/unit";
 
 export default function Units(): JSX.Element {
   return (
@@ -16,24 +16,9 @@ export default function Units(): JSX.Element {
       </div>
 
       <div className="flex flex-col md:flex-row justify-center gap-6 mt-10">
-        <UnitCard
-          name="Unidade Centro"
-          address="Rua Exemplo, 123 - Centro"
-          image={Gymfacade}
-          alt="Unidade Centro"
-        />
-        <UnitCard
-          name="Unidade Zona Sul"
-          address="Av. Modelo, 456 - Zona Sul"
-          image={Gymfacade}
-          alt="Unidade Zona Sul"
-        />
-        <UnitCard
-          name="Unidade Zona Norte"
-          address="Rua Inspiração, 789 - Zona Norte"
-          image={Gymfacade}
-          alt="Unidade Zona Norte"
-        />
+        {unit.map((unit, index) => (
+          <UnitCard key={index} {...unit} />
+        ))}
       </div>
     </section>
   );

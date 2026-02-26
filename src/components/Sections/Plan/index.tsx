@@ -8,7 +8,7 @@ export default function Plan(): JSX.Element {
   return (
     <div
       id="plan"
-      className="bg-(--primary-color) min-h-screen p-8 flex flex-col items-center"
+      className="bg-(--primary-color) p-8 flex flex-col items-center"
     >
       <Title variant="secondary" text="Planos" />
       <Text

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 interface CarroselProps {
-  images: { src: string; alt: string }[];
+  images: { src?: string; alt?: string; value?: string }[];
   interval?: number;
 }
 
