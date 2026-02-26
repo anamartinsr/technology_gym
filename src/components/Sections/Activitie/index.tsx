@@ -2,37 +2,16 @@ import Button from "../../ui/Button";
 import Carrosel from "../../ui/Carrosel";
 import Text from "../../common/Text";
 import Title from "../../common/Title";
-import Weigths from "/weigths.jpg";
-import Swimming from "/swimming.jpg";
-import Zumba from "/zumba.jpg";
-import Crossfit from "/crossfit.jpg";
-import Yoga from "/yoga.jpg";
 import BulletItem from "./BulletItem";
+import activities from "../../../data/activities";
 
 export default function Activitie() {
-  const images = [
-    { src: Zumba, alt: "Zumba Technology" },
-    { src: Crossfit, alt: "Crossfit Technology" },
-    { src: Yoga, alt: "Yoga Technology" },
-    { src: Weigths, alt: "Weigths Technology" },
-    { src: Swimming, alt: "Swimming Technology" },
-  ];
-
-  const activities = [
-    "Sauna",
-    "Musculação",
-    "CrossFit",
-    "Spinning",
-    "Pilates",
-    "Natação",
-  ];
-
   return (
     <section
       id="activitie"
-      className="bg-(--primary-color) min-h-screen p-8 flex items-center"
+      className="bg-(--primary-color) p-8 flex items-center"
     >
-      <div className="container mx-auto flex flex-col md:flex-row items-center md:items-stretch gap-12">
+      <div className="mx-auto flex flex-col md:flex-row items-center md:items-stretch gap-12">
         <div className="flex-1 flex flex-col justify-center gap-6 text-center md:text-left">
           <Title
             variant="secondary"
@@ -49,15 +28,15 @@ export default function Activitie() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-left">
             {activities.map((activity) => (
-              <BulletItem key={activity} name={activity} />
+              <BulletItem key={activity.value} name={activity.value} />
             ))}
           </div>
 
           <Button text="MATRICULE-SE" variant="secondary" to="/enrollment" />
         </div>
 
-        <div className="flex-1 flex justify-center md:justify-end">
-          <Carrosel images={images} interval={3000} />
+        <div className="w-full flex-1 flex justify-center md:justify-end">
+          <Carrosel images={activities} interval={3000} />
         </div>
       </div>
     </section>
