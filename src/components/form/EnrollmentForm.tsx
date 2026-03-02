@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 import {
   enrollmentSchema,
@@ -13,6 +15,8 @@ import Button from "../ui/Button";
 import { plans } from "../../data/plans";
 
 export default function EnrollmentForm() {
+  const navigate = useNavigate();
+
   const planOptions = plans.map((plan) => ({
     value: plan.id,
     label: `${plan.title} - ${plan.price}`,
@@ -26,19 +30,53 @@ export default function EnrollmentForm() {
     formState: { errors },
   } = useForm<EnrollmentFormData>({
     resolver: zodResolver(enrollmentSchema),
+    defaultValues: {
+      fullName: "",
+      cpf: "",
+      dob: "",
+      phone: "",
+      email: "",
+      plan: "",
+      terms: false,
+      privacy: false,
+    },
   });
 
   const onSubmit = (data: EnrollmentFormData) => {
-    console.log(data);
+    try {
+      console.log(data);
+      toast.success("Matrícula confirmada com sucesso!");
+
+      setTimeout(() => {
+        navigate("/confirmation");
+      }, 1500);
+    } catch {
+      toast.error("Erro ao confirmar matrícula. Tente novamente.");
+    }
+  };
+
+  const formatName = (value: string) => {
+    return value.replace(/[0-9]/g, "");
   };
 
   const formatCPF = (value: string) => {
-    return value
-      .replace(/\D/g, "")
-      .replace(/(\d{3})(\d)/, "$1.$2")
-      .replace(/(\d{3})(\d)/, "$1.$2")
-      .replace(/(\d{3})(\d{1,2})$/, "$1-$2")
-      .slice(0, 14);
+    const cleanValue = value.replace(/\D/g, "");
+
+    let maskedValue = "";
+    if (cleanValue.length > 9) {
+      maskedValue = cleanValue.replace(
+        /(\d{3})(\d{3})(\d{3})(\d{0,2})/,
+        "$1.$2.$3-$4",
+      );
+    } else if (cleanValue.length > 6) {
+      maskedValue = cleanValue.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1.$2.$3");
+    } else if (cleanValue.length > 3) {
+      maskedValue = cleanValue.replace(/(\d{3})(\d{0,3})/, "$1.$2");
+    } else {
+      maskedValue = cleanValue;
+    }
+
+    return maskedValue;
   };
 
   const formatPhone = (value: string) => {
@@ -61,7 +99,12 @@ export default function EnrollmentForm() {
       <InputField
         label="Nome Completo"
         id="fullName"
-        {...register("fullName")}
+        value={watch("fullName") || ""}
+        onChange={(e) =>
+          setValue("fullName", formatName(e.target.value), {
+            shouldValidate: true,
+          })
+        }
         error={errors.fullName}
       />
 
@@ -70,6 +113,7 @@ export default function EnrollmentForm() {
           label="CPF"
           id="cpf"
           placeholder="000.000.000-00"
+          maxLength={14}
           value={watch("cpf") || ""}
           onChange={(e) =>
             setValue("cpf", formatCPF(e.target.value), {
@@ -106,6 +150,7 @@ export default function EnrollmentForm() {
           label="Email"
           id="email"
           type="email"
+          maxLength={100}
           {...register("email")}
           error={errors.email}
         />
