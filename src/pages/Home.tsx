@@ -1,4 +1,5 @@
 import Activitie from "../components/Sections/Activitie/index";
+import Feedback from "../components/Sections/Feedback/index";
 import Plan from "../components/Sections/Plan/index";
 import Schedule from "../components/Sections/Schedule/index";
 import TextBlock from "../components/Sections/TextBlock/index";
@@ -41,6 +42,8 @@ export default function Home() {
       <Units />
 
       <Schedule />
+
+      <Feedback />
 
       <Plan />
     </>
