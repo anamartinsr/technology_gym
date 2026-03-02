@@ -8,17 +8,15 @@ export default function Plan(): JSX.Element {
   return (
     <div
       id="plan"
-      className="bg-(--primary-color) p-8 flex flex-col items-center"
+      className="bg-(--primary-color) p-8 md:p-12 flex flex-col items-center"
     >
       <Title variant="secondary" text="Planos" />
       <Text
         pColor="text-(--secondary-color)"
         spanColor="text-white"
-        before="Escolha o plano que se encaixa melhor para você e comece sua jornada rumo a uma vida mais"
-        textSpan=" saudável e ativa"
-        after=" !"
+        before="Escolha o plano que se encaixa melhor para você e comece sua jornada rumo a uma vida mais saudável e ativa !"
       />
-      <section className="flex flex-col md:flex-row justify-center mt-4 gap-6">
+      <section className="flex flex-col lg:flex-row justify-center items-stretch mt-8 gap-6 w-full max-w-7xl">
         {plans.map((plan, index) => (
           <PlanCard key={index} {...plan} />
         ))}
