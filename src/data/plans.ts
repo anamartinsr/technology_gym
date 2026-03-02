@@ -1,7 +1,11 @@
 export interface Plan {
   id: string;
   title: string;
+  subtitle: string;
   price: string;
+  period: string;
+  featured?: boolean;
+  benefitsNote?: string;
   features: {
     text: string;
     included: boolean;
@@ -12,7 +16,9 @@ export const plans: Plan[] = [
   {
     id: "fitness",
     title: "Plano Fitness",
-    price: "R$ 99/mês",
+    subtitle: "O essencial pra entrar no ritmo.",
+    price: "R$ 99",
+    period: "/mês",
     features: [
       {
         text: "Acesso ilimitado à academia (horário comercial)",
@@ -36,7 +42,11 @@ export const plans: Plan[] = [
   {
     id: "power",
     title: "Plano Power",
-    price: "R$ 199/mês",
+    subtitle: "Uma experiência completa!",
+    price: "R$ 199",
+    period: "/mês",
+    featured: true,
+    benefitsNote: "Tudo no plano Fitness e Vip",
     features: [
       {
         text: "Acesso ilimitado à academia (horário comercial)",
@@ -57,7 +67,10 @@ export const plans: Plan[] = [
   {
     id: "vip",
     title: "Plano Vip",
-    price: "R$ 249/mês",
+    subtitle: "Mais benefícios pra ir além do treino.",
+    price: "R$ 249",
+    period: "/mês",
+    benefitsNote: "Tudo no plano Fitness",
     features: [
       {
         text: "Acesso ilimitado à academia (horário comercial)",
