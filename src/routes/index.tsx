@@ -6,6 +6,7 @@ import Loading from "../components/common/Loading";
 
 const Home = lazy(() => import("../pages/Home"));
 const Enrollment = lazy(() => import("../pages/Enrollment"));
+const Confirmation = lazy(() => import("../pages/Confirmation"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 
 export default function AppRoutes() {
@@ -15,6 +16,7 @@ export default function AppRoutes() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/enrollment" element={<Enrollment />} />
+          <Route path="/confirmation" element={<Confirmation />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
