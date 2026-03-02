@@ -28,6 +28,16 @@ body {
 @theme {
   --primary-color: #9cff1e;
   --secondary-color: #000000;
-  --gray:    
-;
+  --white: #ffffff;
+  --gray: #333333;
+  --gree: #008b8b;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
