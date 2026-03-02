@@ -1,7 +1,7 @@
 interface TextProps {
-  before: string;
-  textSpan: string;
-  after: string;
+  before?: string;
+  textSpan?: string;
+  after?: string;
   pColor?: string;
   spanColor?: string;
 }
