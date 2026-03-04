@@ -1,6 +1,6 @@
 import type { Feedback } from "../../../data/feedbacks";
 
-export default function FeedbackCard({ name, plan, message, time }: Feedback) {
+export default function FeedbackCard({ name, plan, message }: Feedback) {
   const initials = name
     .split(" ")
     .map((part) => part[0])
@@ -26,7 +26,6 @@ export default function FeedbackCard({ name, plan, message, time }: Feedback) {
         </div>
         <div>
           <h3 className="font-bold text-(--secondary-color)">{name}</h3>
-          <p className="text-xs text-(--gray)">{time}</p>
         </div>
       </div>
 
