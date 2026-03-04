@@ -6,6 +6,7 @@ import TextBlock from "../components/Sections/TextBlock/index";
 import LogoLoop from "../components/ui/LogoLoop";
 import Units from "../components/Sections/Unit/index";
 import IntroSection from "../components/Sections/IntroSection/index";
+import FAQ from "../components/Sections/Faq/index";
 
 import IconScroll from "/iconScroll.png";
 import TecnlogyScroll from "/tecnologyScroll.png";
@@ -39,13 +40,15 @@ export default function Home() {
 
       <Activitie />
 
+      <Feedback />
+
       <Units />
 
       <Schedule />
 
-      <Feedback />
-
       <Plan />
+
+      <FAQ />
     </>
   );
 }
