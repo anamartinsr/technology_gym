@@ -11,6 +11,8 @@ const navLinks = [
   { href: "#unit", label: "Unidades" },
   { href: "#time", label: "Horários" },
   { href: "#plan", label: "Planos" },
+  { href: "#feedback", label: "Avaliações" },
+  { href: "#faq", label: "FAQ" },
 ];
 
 export default function Header() {
@@ -25,9 +27,9 @@ export default function Header() {
 
   return (
     <header
-      className={`w-full top-0 left-0 z-50 transition-all duration-300 ${scrolled ? "backdrop-blur-md bg-(--secondary-color) border-b border-white/10 shadow-sm" : "bg-(--secondary-color)"}`}
+      className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ${scrolled ? "backdrop-blur-md bg-(--secondary-color) border-b border-white/10 shadow-sm" : "bg-(--secondary-color)"}`}
     >
-      <nav className="max-w-6xl mx-auto flex justify-between items-center p-4">
+      <nav className="max-w-6xl mx-auto flex justify-between items-center py-2 px-4">
         <h1 className="text-2xl font-extrabold text-white tracking-wide">
           <LogoHeader />
         </h1>
