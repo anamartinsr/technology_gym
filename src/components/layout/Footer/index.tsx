@@ -52,6 +52,22 @@ export default function Footer() {
                 Planos
               </a>
             </li>
+            <li>
+              <a
+                href="#feedback"
+                className="hover:text-(--primary-color) transition-colors"
+              >
+                Avaliações
+              </a>
+            </li>
+            <li>
+              <a
+                href="#faq"
+                className="hover:text-(--primary-color) transition-colors"
+              >
+                FAQ
+              </a>
+            </li>
           </ul>
         </FooterSection>
 
