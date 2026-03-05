@@ -12,6 +12,7 @@ import InputField from "./InputField";
 import CheckboxField from "./CheckboxField";
 import SelectField from "./SelectField";
 import Button from "../ui/Button";
+
 import { plans } from "../../data/plans";
 
 export default function EnrollmentForm() {
@@ -25,66 +26,23 @@ export default function EnrollmentForm() {
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<EnrollmentFormData>({
     resolver: zodResolver(enrollmentSchema),
-    defaultValues: {
-      fullName: "",
-      cpf: "",
-      dob: "",
-      phone: "",
-      email: "",
-      plan: "",
-      terms: false,
-      privacy: false,
-    },
+    mode: "onBlur",
+    reValidateMode: "onChange",
   });
 
-  const onSubmit = (data: EnrollmentFormData) => {
+  const onSubmit = async (data: EnrollmentFormData) => {
     try {
-      console.log(data);
       toast.success("Matrícula confirmada com sucesso!");
 
       setTimeout(() => {
         navigate("/confirmation");
-      }, 1500);
+      }, 1200);
     } catch {
-      toast.error("Erro ao confirmar matrícula. Tente novamente.");
+      toast.error("Erro ao confirmar matrícula.");
     }
-  };
-
-  const formatName = (value: string) => {
-    return value.replace(/[0-9]/g, "");
-  };
-
-  const formatCPF = (value: string) => {
-    const cleanValue = value.replace(/\D/g, "");
-
-    let maskedValue = "";
-    if (cleanValue.length > 9) {
-      maskedValue = cleanValue.replace(
-        /(\d{3})(\d{3})(\d{3})(\d{0,2})/,
-        "$1.$2.$3-$4",
-      );
-    } else if (cleanValue.length > 6) {
-      maskedValue = cleanValue.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1.$2.$3");
-    } else if (cleanValue.length > 3) {
-      maskedValue = cleanValue.replace(/(\d{3})(\d{0,3})/, "$1.$2");
-    } else {
-      maskedValue = cleanValue;
-    }
-
-    return maskedValue;
-  };
-
-  const formatPhone = (value: string) => {
-    return value
-      .replace(/\D/g, "")
-      .replace(/^(\d{2})(\d)/g, "($1) $2")
-      .replace(/(\d{4,5})(\d{4})$/, "$1-$2")
-      .slice(0, 15);
   };
 
   return (
@@ -99,12 +57,7 @@ export default function EnrollmentForm() {
       <InputField
         label="Nome Completo"
         id="fullName"
-        value={watch("fullName") || ""}
-        onChange={(e) =>
-          setValue("fullName", formatName(e.target.value), {
-            shouldValidate: true,
-          })
-        }
+        {...register("fullName")}
         error={errors.fullName}
       />
 
@@ -114,12 +67,7 @@ export default function EnrollmentForm() {
           id="cpf"
           placeholder="000.000.000-00"
           maxLength={14}
-          value={watch("cpf") || ""}
-          onChange={(e) =>
-            setValue("cpf", formatCPF(e.target.value), {
-              shouldValidate: true,
-            })
-          }
+          {...register("cpf")}
           error={errors.cpf}
         />
 
@@ -137,12 +85,7 @@ export default function EnrollmentForm() {
           label="Telefone"
           id="phone"
           placeholder="(00) 00000-0000"
-          value={watch("phone") || ""}
-          onChange={(e) =>
-            setValue("phone", formatPhone(e.target.value), {
-              shouldValidate: true,
-            })
-          }
+          {...register("phone")}
           error={errors.phone}
         />
 
@@ -183,7 +126,10 @@ export default function EnrollmentForm() {
       </fieldset>
 
       <div className="flex justify-center mt-4">
-        <Button variant="enrollment" text="Confirmar Matrícula" />
+        <Button
+          variant="enrollment"
+          text={isSubmitting ? "Enviando..." : "Confirmar Matrícula"}
+        />
       </div>
     </form>
   );

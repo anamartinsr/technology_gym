@@ -12,7 +12,7 @@ export default function ConfirmationMessage() {
 
       <div className="space-y-4">
         <p className="text-base text-(--gray)">
-          Bem-vindo à <strong>Technology Gym</strong>! 💪
+          Bem-vindo à <strong>Technology Gym</strong>!
         </p>
       </div>
     </>

@@ -19,7 +19,7 @@ export default function CheckboxField({
         {label}
       </label>
 
-      {error && <span className="text-red-500 text-sm">{error.message}</span>}
+      {error && <span className="text-(--red) text-sm">{error.message}</span>}
     </div>
   );
 }

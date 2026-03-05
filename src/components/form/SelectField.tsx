@@ -24,7 +24,7 @@ export default function SelectField({
         id={id}
         {...props}
         className={`border rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-(--primary-color)
-        ${error ? "border-red-500" : "border-gray-300"}`}
+        ${error ? "border-(--red)" : "border-(--gray-light)"}`}
       >
         <option value="">Selecione</option>
         {options.map((opt) => (
@@ -34,7 +34,7 @@ export default function SelectField({
         ))}
       </select>
 
-      {error && <span className="text-red-500 text-sm">{error.message}</span>}
+      {error && <span className="text-(--red) text-sm">{error.message}</span>}
     </div>
   );
 }
