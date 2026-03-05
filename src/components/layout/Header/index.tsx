@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import NavLink from "./NavLink";
 import MobileMenu from "./MobileMenu";
@@ -18,6 +19,19 @@ const navLinks = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavClick = (e: React.MouseEvent | null, href: string) => {
+    if (location.pathname !== "/") {
+      if (e) e.preventDefault();
+      navigate(`/${href}`);
+      setOpen(false);
+      return;
+    }
+
+    scrollToSection(e, href, setOpen);
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 100);
@@ -40,7 +54,7 @@ export default function Header() {
               <NavLink
                 href={href}
                 label={label}
-                onClick={(e) => scrollToSection(e, href, setOpen)}
+                onClick={(e) => handleNavClick(e, href)}
               />
             </li>
           ))}
@@ -51,9 +65,7 @@ export default function Header() {
         </button>
       </nav>
 
-      {open && (
-        <MobileMenu navLinks={navLinks} onClose={() => setOpen(false)} />
-      )}
+      {open && <MobileMenu navLinks={navLinks} onLinkClick={handleNavClick} />}
     </header>
   );
 }
