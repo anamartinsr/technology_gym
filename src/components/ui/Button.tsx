@@ -4,6 +4,8 @@ interface ButtonProps {
   text: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   to?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
 const styles = {
@@ -20,7 +22,9 @@ export default function Button({
   variant = "primary",
   text,
   onClick,
+  type = "button",
   to,
+  disabled = false,
 }: ButtonProps) {
   const navigate = useNavigate();
 
@@ -30,7 +34,9 @@ export default function Button({
   }
   return (
     <button
-      className={`w-full cursor-pointer sm:w-auto font-bold py-3 px-6 rounded-md shadow-lg hover:scale-105 transition ${styles[variant]}`}
+      type={type}
+      disabled={disabled}
+      className={`w-full cursor-pointer sm:w-auto font-bold py-3 px-6 rounded-md shadow-lg hover:scale-105 transition ${styles[variant]} disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100`}
       onClick={handleClick}
     >
       {text}

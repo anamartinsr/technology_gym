@@ -54,7 +54,6 @@ export default function Feedback(): JSX.Element {
     scrollToStep(index);
   };
 
-  // Auto-scroll effect
   useEffect(() => {
     if (isPaused || totalSteps === 1) return;
 
@@ -64,7 +63,7 @@ export default function Feedback(): JSX.Element {
         scrollToStep(nextStep);
         return nextStep;
       });
-    }, 3000); // Change slides every 3 seconds
+    }, 3000);
 
     return () => {
       if (autoScrollInterval.current) {
@@ -89,7 +88,10 @@ export default function Feedback(): JSX.Element {
   }, [updateActiveStep]);
 
   return (
-    <section className="bg-(--white) px-6 md:px-16 py-14 flex flex-col items-center gap-8">
+    <section
+      id="feedback"
+      className="bg-(--white) px-6 md:px-16 py-14 flex flex-col items-center gap-8"
+    >
       <p className="text-(--secondary-color) text-xs tracking-[0.25em] font-semibold uppercase">
         Testemunhos
       </p>
