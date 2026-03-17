@@ -6,17 +6,72 @@ import toast from "react-hot-toast";
 import {
   enrollmentSchema,
   type EnrollmentFormData,
-} from "../../schemas/enrollmentSchema";
+} from "@/schemas/enrollmentSchema";
 
-import InputField from "./InputField";
-import CheckboxField from "./CheckboxField";
-import SelectField from "./SelectField";
-import Button from "../ui/Button";
-
-import { plans } from "../../data/plans";
+import { plans } from "@/data/plans";
+import { formatCPF, formatName, formatPhone } from "@/utils/formatters";
+import {
+  enrollmentConsentFields,
+  enrollmentFieldRows,
+  enrollmentPrimaryField,
+  type EnrollmentInputName,
+} from "@/data/enrollmentForm";
+import { UI_TEXT } from "@/constants/uiText";
+import EnrollmentFormContent from "@/components/form/EnrollmentFormContent";
 
 export default function EnrollmentForm() {
   const navigate = useNavigate();
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.target.value = formatName(e.target.value);
+  };
+
+  const handleNumericInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    formatter: (value: string) => string,
+  ) => {
+    e.target.value = formatter(e.target.value);
+  };
+
+  const preventNumericOnName = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (/\d/.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
+  const preventLettersOnNumeric = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+  ) => {
+    if (/^[a-zA-Z]$/.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
+  const getRegisterByField = (name: EnrollmentInputName) => {
+    if (name === "fullName") {
+      return register(name, { onChange: handleNameChange });
+    }
+
+    if (name === "cpf") {
+      return register(name, {
+        onChange: (e) => handleNumericInputChange(e, formatCPF),
+      });
+    }
+
+    if (name === "phone") {
+      return register(name, {
+        onChange: (e) => handleNumericInputChange(e, formatPhone),
+      });
+    }
+
+    return register(name);
+  };
+
+  const getOnKeyDownByField = (name: EnrollmentInputName) => {
+    if (name === "fullName") return preventNumericOnName;
+    if (name === "cpf" || name === "phone") return preventLettersOnNumeric;
+    return undefined;
+  };
 
   const planOptions = plans.map((plan) => ({
     value: plan.id,
@@ -34,14 +89,16 @@ export default function EnrollmentForm() {
   });
 
   const onSubmit = async (data: EnrollmentFormData) => {
+    void data;
+
     try {
-      toast.success("Matrícula confirmada com sucesso!");
+      toast.success(UI_TEXT.enrollment.successToast);
 
       setTimeout(() => {
         navigate("/confirmation");
       }, 1200);
     } catch {
-      toast.error("Erro ao confirmar matrícula.");
+      toast.error(UI_TEXT.enrollment.errorToast);
     }
   };
 
@@ -50,87 +107,23 @@ export default function EnrollmentForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="bg-white px-10 lg:px-45 py-10 grid gap-4"
     >
-      <h2 className="text-xl font-bold text-(--secondary-color)">
-        Preencha seus dados
-      </h2>
-
-      <InputField
-        label="Nome Completo"
-        id="fullName"
-        {...register("fullName")}
-        error={errors.fullName}
+      <EnrollmentFormContent
+        viewModel={{
+          title: UI_TEXT.enrollment.title,
+          primaryField: enrollmentPrimaryField,
+          fieldRows: enrollmentFieldRows,
+          consentFields: enrollmentConsentFields,
+          planOptions,
+          isSubmitting,
+        }}
+        bindings={{
+          errors,
+          registerField: getRegisterByField,
+          registerPlan: register("plan"),
+          registerConsent: (name) => register(name),
+          getFieldKeyDown: getOnKeyDownByField,
+        }}
       />
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <InputField
-          label="CPF"
-          id="cpf"
-          placeholder="000.000.000-00"
-          maxLength={14}
-          {...register("cpf")}
-          error={errors.cpf}
-        />
-
-        <InputField
-          label="Data de Nascimento"
-          id="dob"
-          type="date"
-          {...register("dob")}
-          error={errors.dob}
-        />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <InputField
-          label="Telefone"
-          id="phone"
-          placeholder="(00) 00000-0000"
-          {...register("phone")}
-          error={errors.phone}
-        />
-
-        <InputField
-          label="Email"
-          id="email"
-          type="email"
-          maxLength={100}
-          {...register("email")}
-          error={errors.email}
-        />
-      </div>
-
-      <SelectField
-        label="Confirme seu plano"
-        id="plan"
-        options={planOptions}
-        {...register("plan")}
-        error={errors.plan}
-      />
-
-      <fieldset className="space-y-2">
-        <legend className="sr-only">Consentimentos</legend>
-
-        <CheckboxField
-          label="Aceito os termos"
-          id="terms"
-          {...register("terms")}
-          error={errors.terms}
-        />
-
-        <CheckboxField
-          label="Aceito a política"
-          id="privacy"
-          {...register("privacy")}
-          error={errors.privacy}
-        />
-      </fieldset>
-
-      <div className="flex justify-center mt-4">
-        <Button
-          variant="enrollment"
-          text={isSubmitting ? "Enviando..." : "Confirmar Matrícula"}
-        />
-      </div>
     </form>
   );
 }

@@ -15,7 +15,12 @@ export default function CheckboxField({
   return (
     <div className="flex flex-col">
       <label className="flex items-center gap-2 cursor-pointer text-(--secondary-color)">
-        <input type="checkbox" id={id} {...props} />
+        <input
+          type="checkbox"
+          id={id}
+          {...props}
+          className="h-4 w-4 rounded border-(--gray-light) text-(--primary-color)"
+        />
         {label}
       </label>
 
