@@ -1,20 +1,21 @@
-import Button from "../../ui/Button";
+import ResponsiveImage from "@/components/common/ResponsiveImage";
+import Button from "@/components/ui/Button";
+import { UI_TEXT } from "@/constants/uiText";
+import type { Unit } from "@/data/unit";
 
 interface UnitCardProps {
-  name: string;
-  address: string;
-  image: string;
-  alt: string;
+  unit: Unit;
 }
 
-export default function UnitCard({ name, address, image, alt }: UnitCardProps) {
+export default function UnitCard({ unit }: UnitCardProps) {
+  const { name, address, image } = unit;
+
   return (
     <div className="bg-(--primary-color) text-(--secondary-color) flex flex-col gap-4 p-6 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl w-full md:w-80 overflow-hidden">
       <div className="relative h-48 rounded-lg overflow-hidden">
-        <img
-          src={image}
-          alt={alt}
-          className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+        <ResponsiveImage
+          asset={{ ...image, alt: name }}
+          imgClassName="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
         />
       </div>
 
@@ -40,7 +41,7 @@ export default function UnitCard({ name, address, image, alt }: UnitCardProps) {
       </div>
 
       <Button
-        text="Vem pra Technology Gym"
+        text={UI_TEXT.cta.comeToGym}
         variant="secondary"
         to="/enrollment"
       />
