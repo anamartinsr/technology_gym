@@ -1,6 +1,9 @@
+import type { ElementType } from "react";
+
 interface TitleProps {
   variant: "primary" | "secondary";
   text: string;
+  as?: ElementType;
 }
 
 const styles = {
@@ -8,12 +11,12 @@ const styles = {
   secondary: "text-(--secondary-color) ",
 };
 
-export default function Title({ text, variant }: TitleProps) {
+export default function Title({ text, variant, as: Tag = "h2" }: TitleProps) {
   return (
-    <h2
+    <Tag
       className={`text-4xl md:text-5xl text-(--primary-color) font-bold ${styles[variant]}`}
     >
       {text}
-    </h2>
+    </Tag>
   );
 }
