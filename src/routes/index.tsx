@@ -1,13 +1,13 @@
 import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 
-import Layout from "../components/layout/Layout";
-import Loading from "../components/common/Loading";
+import Layout from "@/components/layout/Layout";
+import Loading from "@/components/common/Loading";
 
-const Home = lazy(() => import("../pages/Home"));
-const Enrollment = lazy(() => import("../pages/Enrollment"));
-const Confirmation = lazy(() => import("../pages/Confirmation"));
-const NotFound = lazy(() => import("../pages/NotFound"));
+const Home = lazy(() => import("@/pages/Home"));
+const Enrollment = lazy(() => import("@/pages/Enrollment"));
+const Confirmation = lazy(() => import("@/pages/Confirmation"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
 
 export default function AppRoutes() {
   return (
