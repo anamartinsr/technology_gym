@@ -19,5 +19,19 @@ export default tseslint.config([
       ecmaVersion: 2020,
       globals: globals.browser,
     },
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: ["../*", "../../*", "../../../*", "../../../../*"],
+              message:
+                "Use imports por alias de domínio (ex.: @/components, @/data, @/utils) em vez de ../",
+            },
+          ],
+        },
+      ],
+    },
   },
 ]);
