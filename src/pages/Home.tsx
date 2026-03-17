@@ -1,18 +1,18 @@
-import { useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import Activitie from "../components/Sections/Activitie/index";
-import Feedback from "../components/Sections/Feedback/index";
-import Plan from "../components/Sections/Plan/index";
-import Schedule from "../components/Sections/Schedule/index";
-import TextBlock from "../components/Sections/TextBlock/index";
-import LogoLoop from "../components/ui/LogoLoop";
-import Units from "../components/Sections/Unit/index";
-import IntroSection from "../components/Sections/IntroSection/index";
-import FAQ from "../components/Sections/Faq/index";
-import { scrollToSection } from "../utils/scrollToSection";
+import SectionLoading from "@/components/common/SectionLoading";
+import LogoLoop from "@/components/ui/LogoLoop";
+import { imageAssets } from "@/data/images";
+import IntroSection from "@/components/Sections/IntroSection/index";
+import { scrollToSection } from "@/utils/scrollToSection";
 
-import IconScroll from "/iconScroll.png";
-import TecnlogyScroll from "/tecnologyScroll.png";
+const TextBlock = lazy(() => import("@/components/Sections/TextBlock/index"));
+const Activitie = lazy(() => import("@/components/Sections/Activitie/index"));
+const Feedback = lazy(() => import("@/components/Sections/Feedback/index"));
+const Units = lazy(() => import("@/components/Sections/Unit/index"));
+const Schedule = lazy(() => import("@/components/Sections/Schedule/index"));
+const Plan = lazy(() => import("@/components/Sections/Plan/index"));
+const FAQ = lazy(() => import("@/components/Sections/Faq/index"));
 
 export default function Home() {
   const location = useLocation();
@@ -27,10 +27,7 @@ export default function Home() {
     return () => window.clearTimeout(timeoutId);
   }, [location.hash]);
 
-  const imageLogos = [
-    { src: IconScroll, alt: "IconScroll" },
-    { src: TecnlogyScroll, alt: "TecnlogyScroll" },
-  ];
+  const imageLogos = [imageAssets.logoLoopIcon, imageAssets.logoLoopTechnology];
 
   return (
     <>
@@ -51,19 +48,15 @@ export default function Home() {
         />
       </div>
 
-      <TextBlock />
-
-      <Activitie />
-
-      <Feedback />
-
-      <Units />
-
-      <Schedule />
-
-      <Plan />
-
-      <FAQ />
+      <Suspense fallback={<SectionLoading />}>
+        <TextBlock />
+        <Activitie />
+        <Feedback />
+        <Units />
+        <Schedule />
+        <Plan />
+        <FAQ />
+      </Suspense>
     </>
   );
 }

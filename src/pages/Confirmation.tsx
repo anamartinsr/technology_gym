@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import SuccessIcon from "../components/form/SuccessIcon";
-import ConfirmationMessage from "../components/form/ConfirmationMessage";
-import Button from "../components/ui/Button";
+import SuccessIcon from "@/components/form/SuccessIcon";
+import ConfirmationMessage from "@/components/form/ConfirmationMessage";
+import Button from "@/components/ui/Button";
+import { UI_TEXT } from "@/constants/uiText";
 
 export default function Confirmation() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function Confirmation() {
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
           <Button
             variant="primary"
-            text="Voltar ao Início"
+            text={UI_TEXT.cta.backToHome}
             onClick={() => navigate("/")}
           />
         </div>
