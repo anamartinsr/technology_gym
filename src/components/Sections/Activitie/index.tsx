@@ -1,9 +1,10 @@
-import Button from "../../ui/Button";
-import Carrosel from "../../ui/Carrosel";
-import Text from "../../common/Text";
-import Title from "../../common/Title";
-import BulletItem from "./BulletItem";
-import activities from "../../../data/activities";
+import Button from "@/components/ui/Button";
+import Carrosel from "@/components/ui/Carrosel";
+import Text from "@/components/common/Text";
+import Title from "@/components/common/Title";
+import BulletItem from "@/components/Sections/Activitie/BulletItem";
+import { activities } from "@/data/activities";
+import { UI_TEXT } from "@/constants/uiText";
 
 export default function Activitie() {
   return (
@@ -32,7 +33,11 @@ export default function Activitie() {
             ))}
           </div>
 
-          <Button text="MATRICULE-SE" variant="secondary" to="/enrollment" />
+          <Button
+            text={UI_TEXT.cta.enroll}
+            variant="secondary"
+            to="/enrollment"
+          />
         </div>
 
         <div className="w-full flex-1 flex justify-center md:justify-end">
