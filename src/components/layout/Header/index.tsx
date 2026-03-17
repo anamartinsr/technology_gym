@@ -1,20 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Menu, X } from "lucide-react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import NavLink from "./NavLink";
-import MobileMenu from "./MobileMenu";
-import LogoHeader from "./LogoHeader";
-import { scrollToSection } from "../../../utils/scrollToSection";
-
-const navLinks = [
-  { href: "#activitie", label: "Atividades" },
-  { href: "#unit", label: "Unidades" },
-  { href: "#time", label: "Horários" },
-  { href: "#plan", label: "Planos" },
-  { href: "#feedback", label: "Avaliações" },
-  { href: "#faq", label: "FAQ" },
-];
+import NavLink from "@/components/layout/Header/NavLink";
+import MobileMenu from "@/components/layout/Header/MobileMenu";
+import LogoHeader from "@/components/layout/Header/LogoHeader";
+import { scrollToSection } from "@/utils/scrollToSection";
+import { navigationLinks } from "@/data/navigation";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,16 +14,19 @@ export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleNavClick = (e: React.MouseEvent | null, href: string) => {
-    if (location.pathname !== "/") {
-      if (e) e.preventDefault();
-      navigate(`/${href}`);
-      setOpen(false);
-      return;
-    }
+  const handleNavClick = useCallback(
+    (e: React.MouseEvent | null, href: string) => {
+      if (location.pathname !== "/") {
+        if (e) e.preventDefault();
+        navigate(`/${href}`);
+        setOpen(false);
+        return;
+      }
 
-    scrollToSection(e, href, setOpen);
-  };
+      scrollToSection(e, href, setOpen);
+    },
+    [location.pathname, navigate],
+  );
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 100);
@@ -44,12 +39,16 @@ export default function Header() {
       className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ${scrolled ? "backdrop-blur-md bg-(--secondary-color) border-b border-white/10 shadow-sm" : "bg-(--secondary-color)"}`}
     >
       <nav className="max-w-6xl mx-auto flex justify-between items-center py-2 px-4">
-        <h1 className="text-2xl font-extrabold text-white tracking-wide">
+        <Link
+          to="/"
+          aria-label={"Ir para a home da Technology Gym"}
+          className="text-2xl font-extrabold text-white tracking-wide"
+        >
           <LogoHeader />
-        </h1>
+        </Link>
 
         <ul className="hidden md:flex space-x-6">
-          {navLinks.map(({ href, label }) => (
+          {navigationLinks.map(({ href, label }) => (
             <li key={href}>
               <NavLink
                 href={href}
@@ -60,12 +59,20 @@ export default function Header() {
           ))}
         </ul>
 
-        <button onClick={() => setOpen(!open)} className="md:hidden text-white">
+        <button
+          type="button"
+          aria-label={open ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={open}
+          onClick={() => setOpen(!open)}
+          className="md:hidden text-white"
+        >
           {open ? <X size={28} /> : <Menu size={28} />}
         </button>
       </nav>
 
-      {open && <MobileMenu navLinks={navLinks} onLinkClick={handleNavClick} />}
+      {open && (
+        <MobileMenu navLinks={navigationLinks} onLinkClick={handleNavClick} />
+      )}
     </header>
   );
 }

@@ -7,7 +7,7 @@ export default function SocialLink({ href, children }: SocialLinkProps) {
   return (
     <a
       href={href}
-      className="p-2 bg-(--primary-color) rounded-full hover:bg-lime-500 transition-colors"
+      className="p-2 bg-(--primary-color) rounded-full hover:bg-lime-500 transition-colors focus-visible:outline-none"
     >
       {children}
     </a>
