@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState, type JSX } from "react";
-import FeedbackCard from "./FeedbackCard";
-import { feedbacks } from "../../../data/feedbacks";
+import FeedbackCarousel from "@/components/Sections/Feedback/FeedbackCarousel";
+import FeedbackCarouselDots from "@/components/Sections/Feedback/FeedbackCarouselDots";
+import { feedbacks } from "@/data/feedbacks";
+import { UI_TEXT } from "@/constants/uiText";
 
 export default function Feedback(): JSX.Element {
   const visibleCards = 3;
@@ -50,9 +52,13 @@ export default function Feedback(): JSX.Element {
     [totalSteps],
   );
 
-  const handleDotClick = (index: number) => {
-    scrollToStep(index);
-  };
+  const handleDotClick = useCallback(
+    (index: number) => {
+      setActiveStep(index);
+      scrollToStep(index);
+    },
+    [scrollToStep],
+  );
 
   useEffect(() => {
     if (isPaused || totalSteps === 1) return;
@@ -93,43 +99,24 @@ export default function Feedback(): JSX.Element {
       className="bg-(--white) px-6 md:px-16 py-14 flex flex-col items-center gap-8"
     >
       <p className="text-(--secondary-color) text-xs tracking-[0.25em] font-semibold uppercase">
-        Testemunhos
+        {UI_TEXT.sections.testimonialsBadge}
       </p>
 
       <h2 className="text-3xl md:text-5xl font-bold text-(--primary-color) text-center">
-        O que nossos alunos dizem
+        {UI_TEXT.sections.testimonialsTitle}
       </h2>
 
-      <div
-        ref={trackRef}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-        onTouchStart={() => setIsPaused(true)}
-        onTouchEnd={() => setIsPaused(false)}
-        className="w-full max-w-6xl grid grid-flow-col auto-cols-[100%] md:auto-cols-[calc((100%-1.5rem)/2)] lg:auto-cols-[calc((100%-3rem)/3)] gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 hide-scrollbar"
-      >
-        {feedbacks.map((feedback, index) => (
-          <div key={index} className="snap-start">
-            <FeedbackCard {...feedback} />
-          </div>
-        ))}
-      </div>
+      <FeedbackCarousel
+        items={feedbacks}
+        trackRef={trackRef}
+        onPauseChange={setIsPaused}
+      />
 
-      <div className="mt-2 flex items-center justify-center gap-2">
-        {Array.from({ length: totalSteps }).map((_, index) => (
-          <button
-            key={index}
-            type="button"
-            aria-label={`Ir para depoimento ${index + 1}`}
-            onClick={() => handleDotClick(index)}
-            className={`h-2 w-2 rounded-full transition-colors ${
-              index === activeStep
-                ? "bg-(--secondary-color)"
-                : "bg-(--primary-color) opacity-40"
-            }`}
-          />
-        ))}
-      </div>
+      <FeedbackCarouselDots
+        totalSteps={totalSteps}
+        activeStep={activeStep}
+        onDotClick={handleDotClick}
+      />
     </section>
   );
 }

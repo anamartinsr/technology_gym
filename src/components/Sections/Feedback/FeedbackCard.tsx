@@ -1,33 +1,18 @@
-import type { Feedback } from "../../../data/feedbacks";
+import type { Feedback } from "@/data/feedbacks";
+import FeedbackAuthor from "@/components/Sections/Feedback/FeedbackAuthor";
+import FeedbackRating from "@/components/Sections/Feedback/FeedbackRating";
 
-export default function FeedbackCard({ name, plan, message }: Feedback) {
-  const initials = name
-    .split(" ")
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
+interface FeedbackCardProps {
+  feedback: Feedback;
+}
+
+export default function FeedbackCard({ feedback }: FeedbackCardProps) {
+  const { name, plan, message } = feedback;
 
   return (
     <article className="w-full md:max-w-sm rounded-2xl border border-(--primary-color) bg-(--white) p-6 text-left">
-      <div className="mb-4 flex items-center gap-1 text-(--primary-color)">
-        <div className="flex items-center justify-center bg-(--primary-color) w-7 h-7 rounded-full">
-          <span className="text-(--secondary-color) font-bold">G</span>
-        </div>
-
-        {Array.from({ length: 5 }).map((_, index) => (
-          <span key={index}>★</span>
-        ))}
-      </div>
-
-      <div className="mb-4 flex items-center gap-3">
-        <div className="h-10 w-10 rounded-full bg-(--secondary-color) text-(--white) flex items-center justify-center text-sm font-bold">
-          {initials}
-        </div>
-        <div>
-          <h3 className="font-bold text-(--secondary-color)">{name}</h3>
-        </div>
-      </div>
+      <FeedbackRating />
+      <FeedbackAuthor name={name} />
 
       <p className="text-(--gray) leading-relaxed">{message}</p>
       <div className="bg-(--primary-color) p-2 rounded-lg mt-4 inline-block">
