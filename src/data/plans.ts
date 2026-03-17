@@ -1,3 +1,8 @@
+export interface PlanFeature {
+  text: string;
+  included: boolean;
+}
+
 export interface Plan {
   id: string;
   title: string;
@@ -6,13 +11,10 @@ export interface Plan {
   period: string;
   featured?: boolean;
   benefitsNote?: string;
-  features: {
-    text: string;
-    included: boolean;
-  }[];
+  features: readonly PlanFeature[];
 }
 
-export const plans: Plan[] = [
+export const plans = [
   {
     id: "fitness",
     title: "Plano Fitness",
@@ -89,4 +91,4 @@ export const plans: Plan[] = [
       { text: "Horário preferencial para aulas e serviços", included: true },
     ],
   },
-];
+] as const satisfies readonly Plan[];

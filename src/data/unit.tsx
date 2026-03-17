@@ -1,26 +1,23 @@
-import Gymfacade from "/gymfacade.jpg";
+import { imageAssets } from "@/data/images";
 
-const unit = [
+export const units = [
   {
     name: "Unidade Centro",
     address: "Rua Exemplo, 123 - Centro",
-    image: Gymfacade,
-    alt: "Unidade Centro",
+    image: imageAssets.gymFacade,
   },
 
   {
     name: "Unidade Zona Sul",
     address: "Av. Modelo, 456 - Zona Sul",
-    image: Gymfacade,
-    alt: "Unidade Zona Sul",
+    image: imageAssets.gymFacade,
   },
 
   {
     name: "Unidade Zona Norte",
     address: "Av. Modelo, 789 - Zona Norte",
-    image: Gymfacade,
-    alt: "Unidade Zona Norte",
+    image: imageAssets.gymFacade,
   },
-];
+] as const;
 
-export default unit;
+export type Unit = (typeof units)[number];

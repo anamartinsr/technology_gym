@@ -1,18 +1,14 @@
-import Weigths from "/weigths.jpg";
-import Swimming from "/swimming.jpg";
-import Zumba from "/zumba.jpg";
-import Crossfit from "/crossfit.jpg";
-import Yoga from "/yoga.jpg";
+import { imageAssets } from "@/data/images";
 
-const activities = [
-  { src: Zumba, alt: "Zumba Technology", value: "Zumba" },
-  { src: Crossfit, alt: "Crossfit Technology", value: "Crossfit" },
-  { src: Yoga, alt: "Yoga Technology", value: "Yoga" },
-  { src: Weigths, alt: "Weigths Technology", value: "Musculação" },
-  { src: Swimming, alt: "Swimming Technology", value: "Natação" },
+export const activities = [
+  { image: imageAssets.activities.zumba, value: "Zumba" },
+  { image: imageAssets.activities.crossfit, value: "Crossfit" },
+  { image: imageAssets.activities.yoga, value: "Yoga" },
+  { image: imageAssets.activities.weigths, value: "Musculação" },
+  { image: imageAssets.activities.swimming, value: "Natação" },
   { value: "Sauna" },
   { value: "Spinning" },
   { value: "Pilates" },
-];
+] as const;
 
-export default activities;
+export type Activity = (typeof activities)[number];

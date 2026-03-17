@@ -1,11 +1,4 @@
-export interface FAQ {
-  id: string;
-  category: string;
-  question: string;
-  answer: string;
-}
-
-export const faqs: FAQ[] = [
+export const faqs = [
   {
     id: "1",
     category: "INFORMAÇÕES",
@@ -41,4 +34,11 @@ export const faqs: FAQ[] = [
     answer:
       "Sim, temos personal trainers especializados disponíveis. Você pode contratar um plano adicional de acompanhamento individual. Entre em contato conosco para mais informações e agendamento.",
   },
-];
+] as const;
+
+export type FAQ = (typeof faqs)[number];
+
+export interface FAQGroup {
+  category: FAQ["category"];
+  items: readonly FAQ[];
+}
