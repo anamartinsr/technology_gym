@@ -1,31 +1,25 @@
-// export const formatName = (value: string): string => {
-//   return value.replace(/[0-9]/g, "");
-// };
+export const formatName = (value: string): string => {
+  return value.replace(/\d/g, "");
+};
 
-// export const formatCPF = (value: string): string => {
-//   const cleanValue = value.replace(/\D/g, "");
+export const formatCPF = (value: string): string => {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
 
-//   let maskedValue = "";
-//   if (cleanValue.length > 9) {
-//     maskedValue = cleanValue.replace(
-//       /(\d{3})(\d{3})(\d{3})(\d{0,2})/,
-//       "$1.$2.$3-$4",
-//     );
-//   } else if (cleanValue.length > 6) {
-//     maskedValue = cleanValue.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1.$2.$3");
-//   } else if (cleanValue.length > 3) {
-//     maskedValue = cleanValue.replace(/(\d{3})(\d{0,3})/, "$1.$2");
-//   } else {
-//     maskedValue = cleanValue;
-//   }
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 6) return `${digits.slice(0, 3)}.${digits.slice(3)}`;
+  if (digits.length <= 9)
+    return `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6)}`;
 
-//   return maskedValue;
-// };
+  return `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6, 9)}-${digits.slice(9, 11)}`;
+};
 
-// export const formatPhone = (value: string): string => {
-//   return value
-//     .replace(/\D/g, "")
-//     .replace(/^(\d{2})(\d)/g, "($1) $2")
-//     .replace(/(\d{4,5})(\d{4})$/, "$1-$2")
-//     .slice(0, 15);
-// };
+export const formatPhone = (value: string): string => {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+
+  if (digits.length <= 2) return digits;
+  if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+  if (digits.length <= 10)
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7, 11)}`;
+};
