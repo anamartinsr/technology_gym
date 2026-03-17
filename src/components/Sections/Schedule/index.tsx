@@ -1,7 +1,9 @@
 import type { JSX } from "react";
-import Button from "../../ui/Button";
-import TimeSlot from "./TimeSlot";
-import Text from "../../common/Text";
+import Button from "@/components/ui/Button";
+import TimeSlot from "@/components/Sections/Schedule/TimeSlot";
+import Text from "@/components/common/Text";
+import { scheduleSlots } from "@/data/schedule";
+import { UI_TEXT } from "@/constants/uiText";
 
 export default function Schedule(): JSX.Element {
   return (
@@ -23,18 +25,12 @@ export default function Schedule(): JSX.Element {
         />
 
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-32 justify-between">
-          <TimeSlot day="Segunda - Sexta" time="05:00 / 00:00" />
-
-          <TimeSlot day="Sábado" time="05:00 / 15:00" />
-
-          <TimeSlot day="Domingo e Feriados" time="05:00 / 14:00" />
+          {scheduleSlots.map((slot) => (
+            <TimeSlot key={slot.day} day={slot.day} time={slot.time} />
+          ))}
         </div>
 
-        <Button
-          text="VEM PRA TECHNOLOGY GYM"
-          variant="primary"
-          to="/enrollment"
-        />
+        <Button text={UI_TEXT.cta.joinGym} variant="primary" to="/enrollment" />
       </div>
     </div>
   );
