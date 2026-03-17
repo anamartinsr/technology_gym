@@ -1,9 +1,11 @@
 import type { JSX } from "react";
-import Title from "../../common/Title";
-import Text from "../../common/Text";
-import UnitCard from "./UnitCard";
-import Logo from "../../../assets/logo.png";
-import unit from "../../../data/unit";
+import ResponsiveImage from "@/components/common/ResponsiveImage";
+import Title from "@/components/common/Title";
+import Text from "@/components/common/Text";
+import UnitCard from "@/components/Sections/Unit/UnitCard";
+import { imageAssets } from "@/data/images";
+import { units } from "@/data/unit";
+import { UI_TEXT } from "@/constants/uiText";
 
 export default function Units(): JSX.Element {
   return (
@@ -12,8 +14,11 @@ export default function Units(): JSX.Element {
       className="bg-(--secondary-color) py-16 md:py-20 px-6 md:px-20 text-center"
     >
       <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-4">
-        <Title variant="primary" text="Nossas Unidades" />
-        <img src={Logo} alt="Logo Tecnhology" className="h-12 md:h-16" />
+        <Title variant="primary" text={UI_TEXT.sections.units} />
+        <ResponsiveImage
+          asset={{ ...imageAssets.logo, width: 208, height: 64 }}
+          imgClassName="h-12 md:h-16"
+        />
       </div>
 
       <Text
@@ -25,8 +30,8 @@ export default function Units(): JSX.Element {
       />
 
       <div className="flex flex-col md:flex-row justify-center gap-6 mt-12 w-full max-w-6xl mx-auto">
-        {unit.map((unit, index) => (
-          <UnitCard key={index} {...unit} />
+        {units.map((unit) => (
+          <UnitCard key={unit.name} unit={unit} />
         ))}
       </div>
     </section>
