@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { validateCPF } from "../utils/validateCPF";
+import { validateCPF } from "@/utils/validateCPF";
 
 const noEmojiRegex = /^[^\p{Extended_Pictographic}]*$/u;
 const onlyLettersRegex = /^[A-Za-zÀ-ÿ\s\-']+$/u;
