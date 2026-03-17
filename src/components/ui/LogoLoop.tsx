@@ -6,6 +6,9 @@ import React, {
   useState,
 } from "react";
 
+import ResponsiveImage from "@/components/common/ResponsiveImage";
+import type { AppImageAsset } from "@/data/images";
+
 export type LogoItem =
   | {
       node: React.ReactNode;
@@ -22,6 +25,7 @@ export type LogoItem =
       sizes?: string;
       width?: number;
       height?: number;
+      imageAsset?: AppImageAsset;
     };
 
 export interface LogoLoopProps {
@@ -304,8 +308,18 @@ export const LogoLoop = React.memo<LogoLoopProps>(
           (() => {
             const imgItem = item as Extract<LogoItem, { src: string }>;
             return (
-              <img
-                className={cx(
+              <ResponsiveImage
+                asset={
+                  imgItem.imageAsset ?? {
+                    src: imgItem.src,
+                    alt: imgItem.alt ?? "",
+                    width: imgItem.width ?? 96,
+                    height: imgItem.height ?? 96,
+                    loading: "lazy",
+                    decoding: "async",
+                  }
+                }
+                imgClassName={cx(
                   "h-[var(--logoloop-logoHeight)] w-auto block object-contain",
                   "[-webkit-user-drag:none] pointer-events-none",
                   "[image-rendering:-webkit-optimize-contrast]",
@@ -313,15 +327,9 @@ export const LogoLoop = React.memo<LogoLoopProps>(
                   scaleOnHover &&
                     "transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-120",
                 )}
-                src={imgItem.src}
                 srcSet={imgItem.srcSet}
                 sizes={imgItem.sizes}
-                width={imgItem.width}
-                height={imgItem.height}
-                alt={imgItem.alt ?? ""}
                 title={imgItem.title}
-                loading="lazy"
-                decoding="async"
                 draggable={false}
               />
             );

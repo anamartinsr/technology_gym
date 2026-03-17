@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import ResponsiveImage from "@/components/common/ResponsiveImage";
+import type { AppImageAsset } from "@/data/images";
 
 interface CarroselProps {
-  images: { src?: string; alt?: string; value?: string }[];
+  images: readonly { image?: AppImageAsset; value?: string }[];
   interval?: number;
 }
 
@@ -19,11 +21,22 @@ export default function Carrosel({ images, interval = 3000 }: CarroselProps) {
   return (
     <div className="relative w-full h-64 md:h-80 lg:h-96 overflow-hidden rounded-lg shadow-lg">
       {images.map((image, index) => (
-        <img
+        <ResponsiveImage
           key={index}
-          src={image.src}
-          alt={image.alt}
-          className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ${
+          asset={
+            image.image
+              ? {
+                  ...image.image,
+                  loading: index === currentIndex ? "eager" : "lazy",
+                }
+              : {
+                  src: "",
+                  alt: "",
+                  width: 640,
+                  height: 384,
+                }
+          }
+          imgClassName={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ${
             index === currentIndex ? "opacity-100" : "opacity-0"
           }`}
         />
@@ -33,10 +46,19 @@ export default function Carrosel({ images, interval = 3000 }: CarroselProps) {
         {images.map((_, index) => (
           <span
             key={index}
+            role="button"
+            tabIndex={0}
+            aria-label={`Ir para slide ${index + 1}`}
             className={`w-3 h-3 rounded-full ${
               index === currentIndex ? "bg-white" : "bg-gray-400"
             }`}
             onClick={() => setCurrentIndex(index)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                setCurrentIndex(index);
+              }
+            }}
           ></span>
         ))}
       </div>

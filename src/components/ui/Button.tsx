@@ -10,9 +10,9 @@ interface ButtonProps {
 
 const styles = {
   primary:
-    "bg-(--primary-color) text-(--secondary-color) hover:bg-gray-100 hover:text-(--secondary-color)",
+    "bg-(--primary-color) text-(--secondary-color) hover:bg-white hover:text-(--secondary-color)",
   secondary:
-    "bg-(--secondary-color) text-(--primary-color) hover:bg-gray-100 hover:text-(--secondary-color)",
+    "bg-(--secondary-color) text-(--primary-color) hover:bg-zinc-900 hover:text-(--primary-color)",
   enrollment:
     "bg-(--primary-color) text-(--secondary-color) hover:bg-(--secondary-color) hover:text-white",
   plan: "bg-(--primary-color) text-(--secondary-color) hover:bg-(--secondary-color) hover:text-white",
@@ -36,7 +36,7 @@ export default function Button({
     <button
       type={type}
       disabled={disabled}
-      className={`w-full cursor-pointer sm:w-auto font-bold py-3 px-6 rounded-md shadow-lg hover:scale-105 transition ${styles[variant]} disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100`}
+      className={`w-full cursor-pointer sm:w-auto font-bold py-3 px-6 rounded-md shadow-lg hover:scale-105 transition focus-visible:outline-none ${styles[variant]} disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100`}
       onClick={handleClick}
     >
       {text}
