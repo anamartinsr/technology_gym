@@ -1,32 +1,24 @@
 import { AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
 import { FaStar } from "react-icons/fa";
-import IconText from "./IconText";
-import Button from "../../ui/Button";
+import IconText from "@/components/Sections/Plan/IconText";
+import Button from "@/components/ui/Button";
+import type { Plan } from "@/data/plans";
 
-interface Feature {
-  text: string;
-  included: boolean;
+interface PlanCardProps {
+  plan: Plan;
 }
 
-interface CardProps {
-  title: string;
-  subtitle: string;
-  price: string;
-  period: string;
-  featured?: boolean;
-  benefitsNote?: string;
-  features: Feature[];
-}
+export default function Card({ plan }: PlanCardProps) {
+  const {
+    title,
+    subtitle,
+    price,
+    period,
+    featured = false,
+    benefitsNote,
+    features,
+  } = plan;
 
-export default function Card({
-  title,
-  subtitle,
-  price,
-  period,
-  featured = false,
-  benefitsNote,
-  features,
-}: CardProps) {
   const cardClasses = featured
     ? "bg-gradient-to-br from-(--primary-color) to-white text-(--secondary-color)"
     : "bg-(--white) text-(--secondary-color) border border-gray-200";
