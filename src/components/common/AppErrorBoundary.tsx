@@ -1,4 +1,5 @@
 import { Component, type ErrorInfo, type ReactNode } from "react";
+import { captureRuntimeError } from "@/utils/observability";
 
 interface AppErrorBoundaryProps {
   children: ReactNode;
@@ -21,6 +22,9 @@ export default class AppErrorBoundary extends Component<
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+    captureRuntimeError("error-boundary", error, {
+      componentStack: errorInfo.componentStack,
+    });
     console.error("Erro capturado pelo AppErrorBoundary:", error, errorInfo);
   }
 
