@@ -36,6 +36,7 @@ interface EnrollmentFormContentProps {
     getFieldKeyDown: (
       name: EnrollmentInputName,
     ) => React.KeyboardEventHandler<HTMLInputElement> | undefined;
+    getFieldFocus: (name: EnrollmentInputName) => () => void;
   };
 }
 
@@ -57,6 +58,7 @@ export default function EnrollmentFormContent({
         maxLength={viewModel.primaryField.maxLength}
         {...bindings.registerField(viewModel.primaryField.name)}
         onKeyDown={bindings.getFieldKeyDown(viewModel.primaryField.name)}
+        onFocus={bindings.getFieldFocus(viewModel.primaryField.name)}
         error={bindings.errors[viewModel.primaryField.name]}
       />
 
@@ -75,6 +77,7 @@ export default function EnrollmentFormContent({
               maxLength={field.maxLength}
               {...bindings.registerField(field.name)}
               onKeyDown={bindings.getFieldKeyDown(field.name)}
+              onFocus={bindings.getFieldFocus(field.name)}
               error={bindings.errors[field.name]}
             />
           ))}
