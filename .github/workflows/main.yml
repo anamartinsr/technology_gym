@@ -30,6 +30,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Dependency vulnerability audit (high+)
+        run: npm run security:deps
+
+      - name: Secret leakage guard (frontend)
+        run: npm run security:secrets
+
       - name: Run ESLint
         run: npm run lint
 
