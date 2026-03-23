@@ -31,6 +31,12 @@ O projeto inclui componentes reutilizáveis, formulário com validação robusta
   - Validação de campos
   - Máscaras de entrada
   - Feedback de erros em tempo real
+  - Telemetria de funil (tentativa, inválido, sucesso e abandono por etapa)
+
+- Observabilidade de runtime:
+  - Captura de erros via Error Boundary
+  - Captura de erros globais (`window.error` e `unhandledrejection`)
+  - Coleta de eventos em `localStorage` para análise local
 
 - Componentes reutilizáveis e escaláveis
 - Estrutura organizada para fácil manutenção
@@ -120,6 +126,66 @@ npm run preview
 
 ---
 
+## Qualidade de Testes
+
+Além dos testes de componentes, o projeto agora cobre fluxos de integração de rotas e matrícula:
+
+- Rota de matrícula carregando formulário completo
+- Fluxo de erro (submissão inválida com mensagens de validação)
+- Fluxo de sucesso (submissão válida + redirecionamento para confirmação)
+- Rota inexistente (página 404)
+
+Executar testes:
+
+```
+npm run test
+```
+
+---
+
+## Observabilidade
+
+O projeto registra métricas e eventos de uso para diagnóstico local e análise de funil:
+
+- Eventos de matrícula:
+  - `enrollment_submit_attempt`
+  - `enrollment_submit_invalid`
+  - `enrollment_submit_success`
+  - `enrollment_submit_error`
+  - `enrollment_stage_interaction`
+  - `enrollment_abandonment`
+- Erros de runtime:
+  - `runtime_error` (Error Boundary, `window.error`, `unhandledrejection`)
+
+Chaves de armazenamento local:
+
+- `technology-gym-observability-events`
+- `technology-gym-web-vitals`
+
+---
+
+## CI/CD (GitHub Actions + Vercel Preview)
+
+O workflow em pull request para `main` executa automaticamente:
+
+- Lint (`npm run lint`)
+- Prettier check (`npm run format:check`)
+- Testes (`npm run test`)
+- Build (`npm run build`)
+- Deploy de preview na Vercel (com comentário automático no PR)
+
+Arquivo do pipeline:
+
+- `.github/workflows/main.yml`
+
+Para habilitar preview deploy no PR, configure os secrets do repositório:
+
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
+
+---
+
 ## Boas Práticas Aplicadas
 
 - Componentes desacoplados
@@ -127,6 +193,9 @@ npm run preview
 - Validação centralizada com Zod
 - Separação de dados e UI
 - Responsividade mobile-first
+- Fluxos de integração testados
+- Observabilidade para erros e funil de conversão
+- Qualidade automatizada em CI/CD
 
 ---
 
