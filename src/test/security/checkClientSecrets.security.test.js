@@ -7,10 +7,11 @@ import { join, resolve } from "node:path";
 describe("check-client-secrets script", () => {
   it("fails when a known secret pattern is present in frontend files", () => {
     const workspace = mkdtempSync(join(tmpdir(), "tech-gym-secrets-"));
+    const awsAccessKey = ["AK", "IA1234567890ABCDEF"].join("");
     mkdirSync(join(workspace, "src"), { recursive: true });
     writeFileSync(
       join(workspace, "src", "leak.ts"),
-      'const awsKey = "AKIA1234567890ABCDEF";\n',
+      `const awsKey = "${awsAccessKey}";\n`,
       "utf8",
     );
 
