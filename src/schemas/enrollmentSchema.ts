@@ -9,7 +9,8 @@ export const enrollmentSchema = z.object({
     .string()
     .min(10, "Nome deve ter no mínimo 10 caracteres")
     .regex(onlyLettersRegex, "Nome não pode conter números")
-    .regex(noEmojiRegex, "Caracteres inválidos"),
+    .regex(noEmojiRegex, "Caracteres inválidos")
+    .max(150, "Nome deve ter no máximo 150 caracteres"),
 
   cpf: z
     .string()
@@ -22,11 +23,13 @@ export const enrollmentSchema = z.object({
   dob: z
     .string()
     .min(1, "Informe a data")
+    .max(10, "Data deve ter no máximo 10 caracteres")
     .refine((date) => new Date(date) <= new Date(), "Data não pode ser futura"),
 
   phone: z
     .string()
     .min(1, "Informe um telefone válido")
+    .max(15, "Telefone deve ter no máximo 15 caracteres")
     .regex(/^\(\d{2}\)\s\d{4,5}-\d{4}$/, "Informe um telefone válido")
     .regex(noEmojiRegex, "Caracteres inválidos"),
 
